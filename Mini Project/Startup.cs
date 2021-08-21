@@ -23,6 +23,11 @@ namespace Mini_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddMvc(config =>
+            {
+                config.EnableEndpointRouting = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,13 +44,10 @@ namespace Mini_Project
 
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseAuthentication();
 
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
+            app.UseMvc(routes => {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
