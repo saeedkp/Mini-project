@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Mini_Project.Models;
+using Mini_Project.Services;
+using Mini_Project.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +27,28 @@ namespace Mini_Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<AppDbContext>(options => 
+                        options.UseSqlServer(Configuration.GetConnectionString("InternshipDBConnection")));
+
             services.AddRazorPages();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddTransient<IMailService, Services.MailService>();
 
             services.AddMvc(config =>
             {
                 config.EnableEndpointRouting = false;
             });
+
+            services.AddScoped<IRequestRepository, SQLRequestRepository>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +61,7 @@ namespace Mini_Project
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
 
             app.UseStaticFiles();
@@ -49,6 +71,7 @@ namespace Mini_Project
             app.UseMvc(routes => {
                 routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
