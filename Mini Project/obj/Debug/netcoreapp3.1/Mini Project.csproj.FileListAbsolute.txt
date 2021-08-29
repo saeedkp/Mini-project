@@ -22,13 +22,6 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\sco
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.input.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.output.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorCoreGenerate.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewStart.cshtml.g.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.Views.pdb
@@ -36,10 +29,6 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Min
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.pdb
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.genruntimeconfig.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CopyComplete
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateRequest.cshtml.g.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -90,4 +79,10 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mic
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MailKit.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateUser.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateRequest.cshtml.g.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmailSentConfirmation.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
