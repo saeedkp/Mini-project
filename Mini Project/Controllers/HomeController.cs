@@ -64,6 +64,8 @@ namespace Mini_Project.Controllers
 
                 _requestRepository.Add(newRequest);
 
+                return View("EmailSentConfirmation");
+
             }
 
             return View();

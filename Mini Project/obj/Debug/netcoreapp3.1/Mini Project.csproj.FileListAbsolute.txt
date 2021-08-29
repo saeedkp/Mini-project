@@ -90,3 +90,4 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mic
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MailKit.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmailSentConfirmation.cshtml.g.cs
