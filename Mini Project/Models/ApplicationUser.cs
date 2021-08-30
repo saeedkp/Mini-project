@@ -11,5 +11,6 @@ namespace Mini_Project.Models
         public string firstName { get; set; }
 
         public string lastName { get; set; }
+        
     }
 }
