@@ -42,7 +42,7 @@ namespace Mini_Project.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRequest(AddRequestViewModel model)
+        public async Task<IActionResult> CreateRequest(AddRequestViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -76,16 +76,19 @@ namespace Mini_Project.Controllers
                 var users = userManager.Users;
                 foreach(var user in users)
                 {
-                    MailRequest mailRequestForHRM = new MailRequest
+                    if (await userManager.IsInRoleAsync(user, "HRM"))
                     {
-                        ToEmail = user.Email,
-                        Subject = "New Request Available",
-                        Body = "A New Request has been created," +
+                        MailRequest mailRequestForHRM = new MailRequest
+                        {
+                            ToEmail = user.Email,
+                            Subject = "New Request Available",
+                            Body = "A New Request has been created," +
                         " Please check it in your panel. Thanks.",
-                        Attachments = null
-                    };
+                            Attachments = null
+                        };
 
-                    var resultHRM = SendMail(mailRequestForHRM);
+                        var resultHRM = SendMail(mailRequestForHRM);
+                    }
                 }
 
                 return View("EmailSentConfirmation");
