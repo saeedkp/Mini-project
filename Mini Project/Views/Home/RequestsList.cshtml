@@ -1,0 +1,38 @@
+@model IEnumerable<Request>
+@{
+
+    ViewBag.Title = "List of Requests";
+}
+
+
+<div class="row m-2">
+    <div class="col">Name</div>
+    <div class="col">Resume</div>
+    <div class="col"></div>
+</div>
+@foreach (var request in Model)
+
+{
+    var filePath = "~/resumes" + request.resumePath;
+    var name = @request.firstName + " " + @request.lastName;
+    <div class="row m-2">
+    <div class="col">@name </div>
+    <div class="col">
+        <a asp-action="downloadfile" asp-controller="home" asp-route-fileName=@request.resumePath>Download</a>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary">Reject</a>
+            </div>
+             <div class="col">
+                <a class="btn btn-primary">Accept</a>
+            </div>
+             <div class="col">
+                <a class="btn btn-primary">Interview</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+}

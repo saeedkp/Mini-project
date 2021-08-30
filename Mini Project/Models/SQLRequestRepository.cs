@@ -19,5 +19,10 @@ namespace Mini_Project.Models
             context.SaveChanges();
             return request;
         }
+
+        public IEnumerable<Request> GetAllRequests()
+        {
+            return context.Requests;
+        }
     }
 }

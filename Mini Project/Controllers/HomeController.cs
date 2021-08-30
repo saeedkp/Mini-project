@@ -63,7 +63,7 @@ namespace Mini_Project.Controllers
                 {
                     ToEmail = model.Email,
                     Subject = "Confirmation Email",
-                    Body = "Your Code is : " + rnd.Next(1000,10001),
+                    Body = "Your Code is : " + rnd.Next(1000, 10001),
                     Attachments = null
                 };
 
@@ -74,7 +74,7 @@ namespace Mini_Project.Controllers
                 _requestRepository.Add(newRequest);
 
                 var users = userManager.Users;
-                foreach(var user in users)
+                foreach (var user in users)
                 {
                     if (await userManager.IsInRoleAsync(user, "HRM"))
                     {
@@ -128,6 +128,20 @@ namespace Mini_Project.Controllers
             }
 
         }
+        public IActionResult RequestsList()
+        {
+            return View(_requestRepository.GetAllRequests());
+        }
+        public FileResult DownloadFile(string fileName)
+        {
+            //Build the File Path.
+            string path = Path.Combine(hostingEnvironment.WebRootPath, "resumes/") + fileName;
 
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            //Send the File to Download.
+            return File(bytes, "application/pdf", "resume.pdf");
+        }
     }
 }

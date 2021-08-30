@@ -1,98 +1,99 @@
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\libman.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.exe
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.deps.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.runtimeconfig.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.runtimeconfig.dev.json
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfoInputs.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfo.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CoreCompileInputs.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorAssemblyInfo.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorAssemblyInfo.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\staticwebassets\Mini Project.StaticWebAssets.Manifest.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\staticwebassets\Mini Project.StaticWebAssets.xml
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\scopedcss\bundle\Mini Project.styles.css
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.input.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.output.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorCoreGenerate.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.Views.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.genruntimeconfig.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CopyComplete
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Humanizer.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MailKit.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\MimeKit.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateUser.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateRequest.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmailSentConfirmation.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.AssemblyReference.cache
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListUsers.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUser.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ManageUserRoles.cshtml.g.cs
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AccessDenied.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\libman.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.exe
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\appsettings.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.deps.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.runtimeconfig.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.runtimeconfig.dev.json
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Humanizer.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\MailKit.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\MimeKit.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\.NetProject\Mini-project\Mini Project\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csprojAssemblyReference.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfoInputs.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfo.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CoreCompileInputs.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.MvcApplicationPartsAssemblyInfo.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorAssemblyInfo.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorAssemblyInfo.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.input.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.output.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorCoreGenerate.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AccessDenied.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateUser.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUser.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListUsers.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ManageUserRoles.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateRequest.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmailSentConfirmation.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorTargetAssemblyInfo.cs
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.Views.pdb
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CopyComplete
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\staticwebassets\Mini Project.StaticWebAssets.Manifest.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\staticwebassets\Mini Project.StaticWebAssets.xml
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.dll
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.pdb
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.genruntimeconfig.cache
+E:\.NetProject\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\RequestsList.cshtml.g.cs

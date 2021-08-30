@@ -8,5 +8,6 @@ namespace Mini_Project.Models
     public interface IRequestRepository
     {
         Request Add(Request request);
+        IEnumerable<Request> GetAllRequests();
     }
 }
