@@ -35,6 +35,14 @@ namespace Mini_Project.Controllers
             this.mailService = mailService;
         }
 
+        public ViewResult index()
+        {
+            // if(User.IsInRole("HRM")){
+            //     // return RedirectToAction("requestslist", "home");
+            // }
+            return View();
+        }
+
         [HttpGet]
         public ViewResult CreateRequest()
         {
