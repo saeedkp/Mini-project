@@ -1,5 +1,10 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+>>>>>>> d52d4316208d93acb6b1434a6145b0d60629ac8a
 =======
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
@@ -9,6 +14,7 @@
         {
             "label": "build",
             "command": "dotnet",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "type": "process",
             "args": [
@@ -43,6 +49,8 @@
                 "/consoleloggerparameters:NoSummary"
             ],
 =======
+=======
+>>>>>>> d52d4316208d93acb6b1434a6145b0d60629ac8a
             "type": "shell",
             "args": [
                 "build",
@@ -55,6 +63,9 @@
             "presentation": {
                 "reveal": "silent"
             },
+<<<<<<< HEAD
+>>>>>>> d52d4316208d93acb6b1434a6145b0d60629ac8a
+=======
 >>>>>>> d52d4316208d93acb6b1434a6145b0d60629ac8a
             "problemMatcher": "$msCompile"
         }
