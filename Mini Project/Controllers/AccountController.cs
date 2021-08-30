@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Mini_Project.Models;
 using Mini_Project.Services;
@@ -11,17 +13,24 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly IMailService mailService;
         private readonly IRequestRepository _requestRepository;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
         public HomeController(IWebHostEnvironment hostingEnvironment,
                                 IMailService mailService,
-                                IRequestRepository requestRepository)
+                                IRequestRepository requestRepository,
+                                RoleManager<IdentityRole> roleManager,
+                                UserManager<ApplicationUser> userManager)
         {
             _requestRepository = requestRepository;
+            this.roleManager = roleManager;
+            this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
             this.mailService = mailService;
         }
@@ -63,6 +72,21 @@ namespace Mini_Project.Controllers
                 newRequest.state = State.FirstCheck;
 
                 _requestRepository.Add(newRequest);
+
+                var users = userManager.Users;
+                foreach(var user in users)
+                {
+                    MailRequest mailRequestForHRM = new MailRequest
+                    {
+                        ToEmail = user.Email,
+                        Subject = "New Request Available",
+                        Body = "A New Request has been created," +
+                        " Please check it in your panel. Thanks.",
+                        Attachments = null
+                    };
+
+                    var resultHRM = SendMail(mailRequestForHRM);
+                }
 
                 return View("EmailSentConfirmation");
 

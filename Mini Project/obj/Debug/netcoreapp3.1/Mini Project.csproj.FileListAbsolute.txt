@@ -9,7 +9,6 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Min
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.pdb
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.dll
 C:\Users\Asus\source\repos\Mini Project\Mini Project\bin\Debug\netcoreapp3.1\Mini Project.Views.pdb
-C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.AssemblyReference.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfoInputs.cache
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.AssemblyInfo.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.CoreCompileInputs.cache
@@ -86,3 +85,14 @@ C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Raz
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.csproj.AssemblyReference.cache
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUsersInRole.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListUsers.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditUser.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ManageUserRoles.cshtml.g.cs
+C:\Users\Asus\source\repos\Mini Project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AccessDenied.cshtml.g.cs

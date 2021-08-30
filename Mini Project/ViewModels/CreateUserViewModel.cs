@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Mini_Project.ViewModels
     {
         [Required]
         [EmailAddress]
-        /*[Remote(action: "IsEmailInUse", controller: "Account")]*/
+        [Remote(action: "IsEmailInUse", controller: "Administration")]
         public string Email { get; set; }
 
         [Required]
@@ -22,5 +23,11 @@ namespace Mini_Project.ViewModels
         [Compare("Password",
             ErrorMessage = "Password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string firstName { get; set; }
+
+        [Required]
+        public string lastName { get; set; }
     }
 }
