@@ -70,6 +70,7 @@ E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcor
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.input.cache
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.TagHelpers.output.cache
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.RazorCoreGenerate.cache
+E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AccessDenied.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateUser.cshtml.g.cs
@@ -81,6 +82,7 @@ E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcor
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ManageUserRoles.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\CreateRequest.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmailSentConfirmation.cshtml.g.cs
+E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Home\index.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -96,4 +98,3 @@ E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcor
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.dll
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.pdb
 E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Mini Project.genruntimeconfig.cache
-E:\My Courses\Other Courses\.net core\Mini-project\Mini Project\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj": {}
+    "E:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj": {}
   },
   "projects": {
-    "e:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj": {
+    "E:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj",
+        "projectUniqueName": "E:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj",
         "projectName": "Mini Project",
-        "projectPath": "e:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj",
+        "projectPath": "E:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\Mini Project.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "e:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\obj\\",
+        "outputPath": "E:\\My Courses\\Other Courses\\.net core\\Mini-project\\Mini Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

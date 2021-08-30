@@ -46,20 +46,23 @@ namespace Mini_Project.Controllers
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
+                    var user = await userManager.FindByEmailAsync(model.Email);
+                    var roles = await userManager.GetRolesAsync(user);
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
                         
                     }
                     else
-                    {
-                        if(User.IsInRole("HRM")){
+                    {  
+                        if(roles.Contains("HRM")){
                             return RedirectToAction("requestslist", "home");
                         }
-                        else{
-                            return RedirectToAction("index", "home");
+                        else
+                        {
+                            return RedirectToAction("index", "home"); 
                         }
-                        
+                          
                     }
 
                 }

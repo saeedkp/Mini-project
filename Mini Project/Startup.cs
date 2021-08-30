@@ -11,10 +11,6 @@ using Microsoft.Extensions.Hosting;
 using Mini_Project.Models;
 using Mini_Project.Services;
 using Mini_Project.Settings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Mini_Project
 {
@@ -78,7 +74,7 @@ namespace Mini_Project
             app.UseAuthentication();
 
             app.UseMvc(routes => {
-                routes.MapRoute("default", "{controller=Home}/{action=CreateRequest}");
+                routes.MapRoute("default", "{controller=Home}/{action=index}");
             });
 
         }
