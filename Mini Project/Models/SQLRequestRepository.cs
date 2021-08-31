@@ -23,6 +23,6 @@ namespace Mini_Project.Models
         public IEnumerable<Request> GetAllRequests()
         {
             return context.Requests;
-        }
+        } 
     }
 }

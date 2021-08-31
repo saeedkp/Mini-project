@@ -16,6 +16,7 @@ namespace Mini_Project.Models
         }
 
         public DbSet<Request> Requests { get; set; }
+        public DbSet<Interview> interviews {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

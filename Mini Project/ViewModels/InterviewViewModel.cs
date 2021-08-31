@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Mini_Project.Models;
 
-namespace Mini_Project.Models
+namespace Mini_Project.ViewModels
 {
-    public class Interview
+    public class InterviewViewModel
     {
+        
         public int Id { get; set; }
         [Required]
         [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
@@ -19,8 +17,7 @@ namespace Mini_Project.Models
         [Required]
         public string Address { get; set; }
         public string Description { get; set; }
-        [ForeignKey("Request")]
         public int RequestRefId { get; set; }
-
+        
     }
 }

@@ -47,6 +47,7 @@ namespace Mini_Project
             });
 
             services.AddScoped<IRequestRepository, SQLRequestRepository>();
+            services.AddScoped<IInterviewRepository,SQLInterviewRepository>();
 
             services.ConfigureApplicationCookie(options =>
             {

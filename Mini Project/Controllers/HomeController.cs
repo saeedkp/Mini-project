@@ -21,14 +21,17 @@ namespace Mini_Project.Controllers
         private readonly IRequestRepository _requestRepository;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IInterviewRepository _interviewRepository;
 
         public HomeController(IWebHostEnvironment hostingEnvironment,
                                 IMailService mailService,
                                 IRequestRepository requestRepository,
                                 RoleManager<IdentityRole> roleManager,
-                                UserManager<ApplicationUser> userManager)
+                                UserManager<ApplicationUser> userManager,
+                                IInterviewRepository interviewRepository)
         {
             _requestRepository = requestRepository;
+            _interviewRepository = interviewRepository;
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
@@ -151,5 +154,58 @@ namespace Mini_Project.Controllers
             //Send the File to Download.
             return File(bytes, "application/pdf", "resume.pdf");
         }
+        [HttpGet]
+        public IActionResult Interview(int id)
+        {
+            InterviewViewModel newInterviewModel = new InterviewViewModel
+            {
+                DateTime = DateTime.Now,
+                Address = "",
+                Attendance = true,
+                Description = "",
+                RequestRefId = id
+            };
+            // Interview newInterview = new Interview
+            // {
+            //     DateTime = DateTime.Now,
+            //     Address = "",
+            //     Attendance = true,
+            //     Description = "",
+            //     RequestRefId = id
+            // };
+
+            // _interviewRepository.Add(newInterview);
+            return View(newInterviewModel);
+        }
+        [HttpPost]
+        public IActionResult Interview(InterviewViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Interview changeInterview = _interviewRepository.GetInterview(model.Id);
+                Interview newInterView = new Interview
+                {
+                DateTime = model.DateTime,
+                Attendance = model.Attendance,
+                Address = model.Address,
+                Description = model.Description,
+                RequestRefId = model.RequestRefId
+            };
+
+            _interviewRepository.Add(newInterView);
+            // MailRequest mailRequest = new MailRequest
+            //     {
+            //         ToEmail = ,
+            //         Subject = "Confirmation Email",
+            //         Body = "Your Code is : " + rnd.Next(1000, 10001),
+            //         Attachments = null
+            //     };
+
+                // var result = SendMail(mailRequest);
+
+            return RedirectToAction("requestslist");
+        }
+            return View();
     }
+}
 }
