@@ -9,5 +9,7 @@ namespace Mini_Project.Models
     {
         Request Add(Request request);
         IEnumerable<Request> GetAllRequests();
+        Request GetRequestById(int id);
+        Request Update(Request requestChanges);
     }
 }

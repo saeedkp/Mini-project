@@ -1,9 +1,15 @@
 {
+<<<<<<< HEAD
+=======
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+>>>>>>> 3a3f3b4286f475d0096b8ae1a4447c4bff20d0c0
     "version": "2.0.0",
     "tasks": [
         {
             "label": "build",
             "command": "dotnet",
+<<<<<<< HEAD
             "type": "process",
             "args": [
                 "build",
@@ -36,6 +42,20 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
+=======
+            "type": "shell",
+            "args": [
+                "build",
+                // Ask dotnet build to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+>>>>>>> 3a3f3b4286f475d0096b8ae1a4447c4bff20d0c0
             "problemMatcher": "$msCompile"
         }
     ]

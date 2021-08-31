@@ -40,9 +40,6 @@ namespace Mini_Project.Controllers
 
         public ViewResult index()
         {
-            // if(User.IsInRole("HRM")){
-            //     // return RedirectToAction("requestslist", "home");
-            // }
             return View();
         }
 
@@ -139,9 +136,37 @@ namespace Mini_Project.Controllers
             }
 
         }
+        [HttpGet]
         public IActionResult RequestsList()
         {
-            return View(_requestRepository.GetAllRequests());
+          RequestsListViewModel requestsListViewModel = new RequestsListViewModel{
+              Requests = _requestRepository.GetAllRequests(),
+              Comment = "" 
+          };
+            return View(requestsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult RequestsList(RequestsListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(model.Id);
+                request.Comment = model.Comment;
+                request.state = State.RejectByHRM;
+
+                request = _requestRepository.Update(request);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Internship Reject",
+                    Body = request.Comment,
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("requestslist","home");
+            }
+            return View();
         }
         public FileResult DownloadFile(string fileName)
         {
