@@ -37,9 +37,6 @@ namespace Mini_Project.Controllers
 
         public ViewResult index()
         {
-            // if(User.IsInRole("HRM")){
-            //     // return RedirectToAction("requestslist", "home");
-            // }
             return View();
         }
 
@@ -71,7 +68,7 @@ namespace Mini_Project.Controllers
                 {
                     ToEmail = model.Email,
                     Subject = "Confirmation Email",
-                    Body = "Your Code is : " + rnd.Next(1000,10001),
+                    Body = "Your Code is : " + rnd.Next(1000, 10001),
                     Attachments = null
                 };
 
@@ -82,7 +79,7 @@ namespace Mini_Project.Controllers
                 _requestRepository.Add(newRequest);
 
                 var users = userManager.Users;
-                foreach(var user in users)
+                foreach (var user in users)
                 {
                     if (await userManager.IsInRoleAsync(user, "HRM"))
                     {
@@ -136,6 +133,48 @@ namespace Mini_Project.Controllers
             }
 
         }
+        [HttpGet]
+        public IActionResult RequestsList()
+        {
+          RequestsListViewModel requestsListViewModel = new RequestsListViewModel{
+              Requests = _requestRepository.GetAllRequests(),
+              Comment = "" 
+          };
+            return View(requestsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult RequestsList(RequestsListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(model.Id);
+                request.Comment = model.Comment;
+                request.state = State.RejectByHRM;
 
+                request = _requestRepository.Update(request);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Internship Reject",
+                    Body = request.Comment,
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("requestslist","home");
+            }
+            return View();
+        }
+        public FileResult DownloadFile(string fileName)
+        {
+            //Build the File Path.
+            string path = Path.Combine(hostingEnvironment.WebRootPath, "resumes/") + fileName;
+
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            //Send the File to Download.
+            return File(bytes, "application/pdf", "resume.pdf");
+        }
     }
 }

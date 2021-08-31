@@ -32,5 +32,6 @@ namespace Mini_Project.Models
         public string resumePath { get; set; }
 
         public State? state { get; set; }
+        public string Comment { get; set; }
     }
 }

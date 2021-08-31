@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" asp-action="createrequest" asp-controller="home">Internship Request</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" asp-action="requestslist" asp-controller="home">Requests List</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         @if (signInManager.IsSignedIn(User))
@@ -82,3 +85,4 @@
             @RenderSection("Scripts", required: false)
         }
 </html>
+
