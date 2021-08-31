@@ -193,6 +193,7 @@ namespace Mini_Project.Controllers
             };
 
             _interviewRepository.Add(newInterView);
+            // _requestRepository.g
             // MailRequest mailRequest = new MailRequest
             //     {
             //         ToEmail = ,
@@ -201,7 +202,7 @@ namespace Mini_Project.Controllers
             //         Attachments = null
             //     };
 
-                // var result = SendMail(mailRequest);
+            //     var result = SendMail(mailRequest);
 
             return RedirectToAction("requestslist");
         }
