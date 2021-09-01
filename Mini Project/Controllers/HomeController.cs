@@ -139,10 +139,11 @@ namespace Mini_Project.Controllers
         [HttpGet]
         public IActionResult RequestsList()
         {
-          RequestsListViewModel requestsListViewModel = new RequestsListViewModel{
-              Requests = _requestRepository.GetAllRequests(),
-              Comment = "" 
-          };
+            RequestsListViewModel requestsListViewModel = new RequestsListViewModel
+            {
+                Requests = _requestRepository.GetAllRequests(),
+                Comment = ""
+            };
             return View(requestsListViewModel);
         }
         [HttpPost]
@@ -164,7 +165,7 @@ namespace Mini_Project.Controllers
                 };
 
                 var result = SendMail(mailRequest);
-                return RedirectToAction("requestslist","home");
+                return RedirectToAction("requestslist", "home");
             }
             return View();
         }
@@ -190,16 +191,6 @@ namespace Mini_Project.Controllers
                 Description = "",
                 RequestRefId = id
             };
-            // Interview newInterview = new Interview
-            // {
-            //     DateTime = DateTime.Now,
-            //     Address = "",
-            //     Attendance = true,
-            //     Description = "",
-            //     RequestRefId = id
-            // };
-
-            // _interviewRepository.Add(newInterview);
             return View(newInterviewModel);
         }
         [HttpPost]
@@ -207,31 +198,34 @@ namespace Mini_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Interview changeInterview = _interviewRepository.GetInterview(model.Id);
                 Interview newInterView = new Interview
                 {
-                DateTime = model.DateTime,
-                Attendance = model.Attendance,
-                Address = model.Address,
-                Description = model.Description,
-                RequestRefId = model.RequestRefId
-            };
+                    DateTime = model.DateTime,
+                    Attendance = model.Attendance,
+                    Address = model.Address,
+                    Description = model.Description,
+                    RequestRefId = model.RequestRefId
+                };
 
-            _interviewRepository.Add(newInterView);
-            // _requestRepository.g
-            // MailRequest mailRequest = new MailRequest
-            //     {
-            //         ToEmail = ,
-            //         Subject = "Confirmation Email",
-            //         Body = "Your Code is : " + rnd.Next(1000, 10001),
-            //         Attachments = null
-            //     };
+                newInterView = _interviewRepository.Add(newInterView);
+                Request request = _requestRepository.GetRequestById(model.RequestRefId);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Accept for interview",
+                    Body = "Interview Location: " + newInterView.Address + "<br />" +
+                        "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
+                        
+                    Attachments = null
+                };
 
-            //     var result = SendMail(mailRequest);
+                var result = SendMail(mailRequest);
+                request.state = State.InterviewWithHRM;
+                _requestRepository.Update(request);
 
-            return RedirectToAction("requestslist");
-        }
+                return RedirectToAction("requestslist");
+            }
             return View();
+        }
     }
-}
 }

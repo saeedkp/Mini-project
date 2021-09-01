@@ -23,9 +23,6 @@ namespace Mini_Project.Models
         public IEnumerable<Request> GetAllRequests()
         {
             return context.Requests;
-<<<<<<< HEAD
-        } 
-=======
         }
 
         public Request GetRequestById(int id)
@@ -40,6 +37,5 @@ namespace Mini_Project.Models
           context.SaveChanges();
           return requestChanges;
         }
->>>>>>> 3a3f3b4286f475d0096b8ae1a4447c4bff20d0c0
     }
 }
