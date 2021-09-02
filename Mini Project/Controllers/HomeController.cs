@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
@@ -181,20 +182,23 @@ namespace Mini_Project.Controllers
             return File(bytes, "application/pdf", "resume.pdf");
         }
         [HttpGet]
-        public IActionResult Interview(int id)
+        public IActionResult Interview(int id, string type)
         {
-            InterviewViewModel newInterviewModel = new InterviewViewModel
+
+            Interview newInterview = new Interview
             {
                 DateTime = DateTime.Now,
                 Address = "",
                 Attendance = true,
                 Description = "",
-                RequestRefId = id
+                RequestRefId = id,
+                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value,
+                Type = type
             };
-            return View(newInterviewModel);
+            return View(newInterview);
         }
         [HttpPost]
-        public IActionResult Interview(InterviewViewModel model)
+        public IActionResult Interview(Interview model)
         {
             if (ModelState.IsValid)
             {
@@ -204,7 +208,9 @@ namespace Mini_Project.Controllers
                     Attendance = model.Attendance,
                     Address = model.Address,
                     Description = model.Description,
-                    RequestRefId = model.RequestRefId
+                    RequestRefId = model.RequestRefId,
+                    UserId = model.UserId,
+                    Type = model.Type
                 };
 
                 newInterView = _interviewRepository.Add(newInterView);
@@ -215,7 +221,7 @@ namespace Mini_Project.Controllers
                     Subject = "Accept for interview",
                     Body = "Interview Location: " + newInterView.Address + "<br />" +
                         "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
-                        
+
                     Attachments = null
                 };
 
@@ -224,6 +230,79 @@ namespace Mini_Project.Controllers
                 _requestRepository.Update(request);
 
                 return RedirectToAction("requestslist");
+            }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> SecondInterview(int id, string type)
+        {
+            Dictionary<string, string> Employees = new Dictionary<string, string>();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var users = userManager.Users;
+            foreach (var user in users)
+            {
+                if (await userManager.IsInRoleAsync(user, "HRM"))
+                {
+                    if (user.Id != userId)
+                    {
+                        string Name = user.firstName + " " + user.lastName;
+                        Employees.Add(Name, user.Id);
+                    }
+                }
+                if (await userManager.IsInRoleAsync(user, "TECH"))
+                {
+                    string Name = user.firstName + " " + user.lastName;
+                    Employees.Add(Name,user.Id);
+                }
+            }
+            InterviewViewModel interviewViewModel = new InterviewViewModel
+            {
+                DateTime = DateTime.Now,
+                Address = "",
+                Attendance = true,
+                Description = "",
+                RequestRefId = id,
+                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value,
+                Type = type,
+                Names = Employees,
+                Username = ""
+            };
+            return View(interviewViewModel);
+        }
+        [HttpPost]
+        public IActionResult SecondInterview(InterviewViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Interview newInterView = new Interview
+                {
+                    DateTime = model.DateTime,
+                    Attendance = model.Attendance,
+                    Address = model.Address,
+                    Description = model.Description,
+                    RequestRefId = model.RequestRefId,
+                    UserId = model.Names[model.Username],
+                    Type = model.Type
+                };
+
+                newInterView = _interviewRepository.Add(newInterView);
+                Request request = _requestRepository.GetRequestById(model.RequestRefId);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Second Interview",
+                    Body = "We set second interview for you with " + model.Username + ".<br/>"  + 
+                        "Interview Location: " + newInterView.Address + "<br />" +
+                        "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
+
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                request.state = State.InterviewWithHRM;
+                _requestRepository.Update(request);
+
+                return RedirectToAction("interviewslist");
             }
             return View();
         }
