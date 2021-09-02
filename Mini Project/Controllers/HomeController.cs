@@ -317,5 +317,35 @@ namespace Mini_Project.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult FollowRequest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult FollowRequest(FollowUpRequestViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestByFollowUpCode(model.code);
+
+                if (Request == null)
+                {
+                    ViewBag.ErrorMessage = $"Request with Code = {model.code} cannot be found";
+                    return View("NotFound");
+                }
+                return RedirectToAction("showstatus", "home", new {id = request.Id});
+            }
+
+            return View(model);
+        }
+
+        public IActionResult ShowStatus(int id)
+        {
+            Request request = _requestRepository.GetRequestById(id);
+            return View(request);
+        }
     }
 }

@@ -37,5 +37,10 @@ namespace Mini_Project.Models
           context.SaveChanges();
           return requestChanges;
         }
+
+        public Request GetRequestByFollowUpCode(string code)
+        {
+            return context.Requests.FirstOrDefault(r => r.followUpCode == code) ?? null;
+        }
     }
 }

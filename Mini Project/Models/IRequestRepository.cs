@@ -11,5 +11,6 @@ namespace Mini_Project.Models
         IEnumerable<Request> GetAllRequests();
         Request GetRequestById(int id);
         Request Update(Request requestChanges);
+        Request GetRequestByFollowUpCode(string code);
     }
 }
