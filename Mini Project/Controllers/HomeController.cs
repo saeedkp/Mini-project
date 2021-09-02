@@ -57,22 +57,23 @@ namespace Mini_Project.Controllers
             {
                 string UniqueFileName = ProcessUploadedFile(model);
 
+                string UniqueFollowUpCode = ProcessFollowUpCode(model);
+
                 Request newRequest = new Request
                 {
                     firstName = model.firstName,
                     lastName = model.lastName,
                     Email = model.Email,
                     phoneNumber = model.phoneNumber,
-                    resumePath = UniqueFileName
+                    resumePath = UniqueFileName,
+                    followUpCode = UniqueFollowUpCode
                 };
-
-                Random rnd = new Random();
 
                 MailRequest mailRequest = new MailRequest
                 {
                     ToEmail = model.Email,
                     Subject = "Confirmation Email",
-                    Body = "Your Code is : " + rnd.Next(1000, 10001),
+                    Body = "Your Code is : " + UniqueFollowUpCode,
                     Attachments = null
                 };
 
@@ -122,6 +123,16 @@ namespace Mini_Project.Controllers
             }
 
             return UniqueFileName;
+        }
+
+        private string ProcessFollowUpCode(AddRequestViewModel model)
+        {
+            string UniqueCode = null;
+            if (model.Email != null)
+            {
+                UniqueCode = Guid.NewGuid().ToString() + "-" + model.Email;
+            }
+            return UniqueCode;
         }
 
         private async Task<IActionResult> SendMail([FromForm] MailRequest request)
