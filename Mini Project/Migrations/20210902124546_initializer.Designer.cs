@@ -10,8 +10,8 @@ using Mini_Project.Models;
 namespace Mini_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210829124948_addAppUser")]
-    partial class addAppUser
+    [Migration("20210902124546_initializer")]
+    partial class initializer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,43 @@ namespace Mini_Project.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "19114472-fad0-4cf0-94b6-eaea054c7dc1",
+                            ConcurrencyStamp = "0652a82f-2afc-40c8-997c-6e879a8db9ed",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "10c2ece8-4131-4865-9959-4f1bf2b31ef4",
+                            ConcurrencyStamp = "e5392c46-d3a1-4159-af11-b8d9b192d90f",
+                            Name = "HRM",
+                            NormalizedName = "HRM"
+                        },
+                        new
+                        {
+                            Id = "c9679f84-83a9-4052-9b04-2ba139b6ee58",
+                            ConcurrencyStamp = "503249e3-2f12-4cd4-a9cb-3c987d8d0909",
+                            Name = "Tech Lead",
+                            NormalizedName = "TECH LEAD"
+                        },
+                        new
+                        {
+                            Id = "39f5c8ac-e8a9-4898-932c-5dd3eb272d45",
+                            ConcurrencyStamp = "dafff9ee-3216-4f8e-94cb-a1567e9420cc",
+                            Name = "Office Manager",
+                            NormalizedName = "OFFICE MANAGER"
+                        },
+                        new
+                        {
+                            Id = "8fa8673e-6cd9-48e4-abf3-224b6e0b40e4",
+                            ConcurrencyStamp = "8b77f8b1-813f-40be-bc06-6017d9d7d5f1",
+                            Name = "Trainee",
+                            NormalizedName = "TRAINEE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -223,12 +260,43 @@ namespace Mini_Project.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Mini_Project.Models.Interview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Attendance")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RequestRefId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("interviews");
+                });
+
             modelBuilder.Entity("Mini_Project.Models.Request", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
