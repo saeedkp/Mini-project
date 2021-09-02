@@ -78,6 +78,8 @@ namespace Mini_Project
                 routes.MapRoute("default", "{controller=Home}/{action=index}");
             });
 
+            //SeedData.Seed(app.ApplicationServices);
+
         }
     }
 }
