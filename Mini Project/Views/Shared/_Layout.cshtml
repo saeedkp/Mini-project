@@ -1,25 +1,24 @@
 ﻿@inject SignInManager<ApplicationUser> signInManager;
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <environment include="Development">
+
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/jquery-validate/jquery.validate.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     </environment>
     <environment exclude="Development">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-              rel="stylesheet"
-              integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-              crossorigin="anonymous"
-              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only"
-              asp-fallback-test-property="position"
-              asp-fallback-test-value="absolute"
-              asp-suppress-fallback-integrity="true">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"
+            asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css" asp-fallback-test-class="sr-only"
+            asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+            asp-suppress-fallback-integrity="true">
 
         <script src="~/lib/jquery/jquery.js"></script>
         <script src="~/lib/jquery-validate/jquery.validate.js"></script>
@@ -29,8 +28,9 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
+
 <body>
-     <div class="container">
+    <div class="container">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-controller="home" asp-action="index">
@@ -43,11 +43,22 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" asp-action="createrequest" asp-controller="home">Internship Request</a>
+                            <a class="nav-link" aria-current="page" asp-action="createrequest"
+                                asp-controller="home">Internship Request</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" asp-action="requestslist" asp-controller="home">Requests List</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </li>
+
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         @if (signInManager.IsSignedIn(User))
@@ -55,7 +66,7 @@
                             <li class="nav-item">
                                 <form asp-action="logout" asp-controller="account" method="post">
                                     <button type="submit" class="nav-link btn btn-link " style="width: auto;">
-                                        Logout    @User.Identity.Name
+                                        Logout @User.Identity.Name
                                     </button>
                                 </form>
                             </li>
@@ -77,12 +88,12 @@
             </div>
         </nav>
         @RenderBody()
-        
+
     </div>
 </body>
 @if (IsSectionDefined("Scripts"))
-        {
-            @RenderSection("Scripts", required: false)
-        }
-</html>
+{
+    @RenderSection("Scripts", required: false)
+}
 
+</html>

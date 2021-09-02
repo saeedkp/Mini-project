@@ -30,7 +30,14 @@ namespace Mini_Project.Models
             return context.Requests.Find(id); 
         }
 
-         public Request Update(Request requestChanges)
+        public IEnumerable<Request> GetRequestsByState(State state)
+        {
+            IEnumerable<Request> requests = GetAllRequests();
+            IEnumerable<Request> filterdRequests = requests.Where(request => request.state == state);
+            return filterdRequests;
+        }
+
+        public Request Update(Request requestChanges)
         {
           var request = context.Requests.Attach(requestChanges);
           request.State = Microsoft.EntityFrameworkCore.EntityState.Modified;

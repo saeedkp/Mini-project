@@ -6,11 +6,11 @@
 
 
 <div id="myGroup">
-    <button class="btn btn-primary mt-1" type="button" data-toggle="collapse" data-target="#not-checked"
+    <button class="btn btn-primary mt-1" id="not-checked-button" type="button" data-toggle="collapse" data-target="#not-checked"
         aria-expanded="false" data-parent="#myGroup" aria-controls="not-checked" style="width: auto;">
         Not Checked
     </button>
-    <button class="btn btn-primary mt-1" type="button" data-toggle="collapse" data-target="#rejected" aria-expanded="false"
+    <button class="btn btn-primary mt-1" id="rejected-button" type="button" data-toggle="collapse" data-target="#rejected" aria-expanded="false"
         data-parent="#myGroup" aria-controls="rejected"style="width: auto;">
         Rejected
     </button>
@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="col">
                                                 <a asp-controller="home" asp-action="Interview" asp-route-id="@request.Id"
-                                            class="btn btn-primary" style="width: auto;">Interview</a>
+                                                asp-route-type="first interview" class="btn btn-primary" style="width: auto;">Interview</a>
                                             </div>
                                         </div>
 
@@ -67,7 +67,7 @@
             }
         </div>
     </div>
-    <div class="collapse" id="rejected">
+    <div class="collapse" id="rejected" >
         <div class="card card-body">
             <div class="row m-2">
                 <div class="col">Name</div>
@@ -101,3 +101,6 @@
         </div>
     </div>
     <div>
+@section Scripts {
+     <script  src="~/js/RequestsList.js"></script>
+}

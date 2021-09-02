@@ -215,7 +215,7 @@ namespace Mini_Project.Controllers
                     Subject = "Accept for interview",
                     Body = "Interview Location: " + newInterView.Address + "<br />" +
                         "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
-                        
+
                     Attachments = null
                 };
 
@@ -226,6 +226,59 @@ namespace Mini_Project.Controllers
                 return RedirectToAction("requestslist");
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult InterviewsList()
+        {
+            InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
+            {
+                Interviews = _interviewRepository.GetAllInterview(),
+                Comment = ""
+
+            };
+            return View(interviewsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult InterviewsList(InterviewsListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.Accept == "1")
+                {
+                    Request request = _requestRepository.GetRequestById(model.requestId);
+                    request.Comment = model.Comment;
+                    request.state = State.ObtainDocumentsAndOfficialProcess;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Accept",
+                        Body = request.Comment,
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+                else if (model.Accept == "0")
+                {
+                    Request request = _requestRepository.GetRequestById(model.requestId);
+                    request.Comment = model.Comment;
+                    request.state = State.RejectAfterInterviewWithHRM;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Reject",
+                        Body = request.Comment,
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+
+                return RedirectToAction("interviewslist", "home");
+            }
+            return View();
+
         }
     }
 }
