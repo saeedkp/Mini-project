@@ -17,6 +17,7 @@ namespace Mini_Project.Models
         WaitingForDocumentAcception,
         SuccessfulSignUp,
         NeedDocumentsCorrection,
-        EndInterviewWithHRM
+        EndInterviewWithHRM,
+        EndTechInterview
     }
 }

@@ -256,7 +256,7 @@ namespace Mini_Project.Controllers
                 if (interview.DateTime < DateTime.Now)
                 {
                     Request request = _requestRepository.GetRequestById(interview.RequestRefId);
-                    if (request.state != State.RejectAfterInterviewWithHRM)
+                    if (request.state != State.RejectAfterInterviewWithHRM && request.state != State.TechInterview)
                     {
                         request.state = State.EndInterviewWithHRM;
                     }
@@ -306,6 +306,91 @@ namespace Mini_Project.Controllers
             }
             return View();
         }
+
+
+
+        [HttpGet]
+        public IActionResult SecondInterviewsList()
+        {
+            IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            foreach (var interview in Interviews)
+            {
+                if (interview.DateTime < DateTime.Now)
+                {
+                    Request request = _requestRepository.GetRequestById(interview.RequestRefId);
+                    if (request.state != State.RejectAfterTechInterview && request.state != State.ObtainDocumentsAndOfficialProcess)
+                    {
+                        request.state = State.EndTechInterview;
+                    }
+
+                }
+            }
+
+            List<Interview> interviewsList = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value && interview.DateTime > DateTime.Now).ToList();
+
+            interviewsList.Sort((x, y) => DateTime.Compare(x.DateTime, y.DateTime));
+            var refreshTime = 0.0;
+            if (interviewsList.Count != 0)
+            {
+                refreshTime = (interviewsList.First().DateTime - DateTime.Now).TotalSeconds;
+            }
+
+            InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
+            {
+                Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value),
+                Comment = "",
+                RefreshTime = (int)refreshTime
+
+            };
+            return View(interviewsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult SecondInterviewsList(InterviewsListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Request request = _requestRepository.GetRequestById(model.requestId);
+                request.Comment = model.Comment;
+                if (model.Accept == "accept")
+                {
+                    request.state = State.ObtainDocumentsAndOfficialProcess;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Accept",
+                        Body = "you are accepted",
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+                else
+                {
+                    request.state = State.RejectAfterTechInterview;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Reject",
+                        Body = model.Comment,
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+
+
+
+                return RedirectToAction("secondinterviewslist", "home");
+            }
+            return View();
+        }
+
+
+
         [HttpGet]
         public async Task<IActionResult> SecondInterview(int id, string type)
         {
