@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mini_Project.Migrations
 {
-    public partial class test : Migration
+    public partial class database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,6 +79,7 @@ namespace Mini_Project.Migrations
                     phoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     resumePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     state = table.Column<int>(type: "int", nullable: true),
+                    followUpCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

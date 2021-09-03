@@ -273,6 +273,9 @@ namespace Mini_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("followUpCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

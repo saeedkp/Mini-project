@@ -10,8 +10,8 @@ using Mini_Project.Models;
 namespace Mini_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210902151400_test")]
-    partial class test
+    [Migration("20210903114811_database")]
+    partial class database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,6 +273,9 @@ namespace Mini_Project.Migrations
 
                     b.Property<string>("firstName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("followUpCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("lastName")

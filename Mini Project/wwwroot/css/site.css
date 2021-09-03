@@ -6,3 +6,13 @@
     height: 200px;
     width: auto;
 }
+
+.card-style {
+    border: 1px solid #555;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 2px #aaa;
+    margin-top: 20px;
+}
+.center{
+    text-align: center;
+}

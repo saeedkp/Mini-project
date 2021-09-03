@@ -6,21 +6,23 @@
 
 
 <div id="myGroup">
-    <button class="btn btn-primary mt-1" id="not-checked-button" type="button" data-toggle="collapse" data-target="#not-checked"
-        aria-expanded="false" data-parent="#myGroup" aria-controls="not-checked" style="width: auto;">
+    <button class="btn btn-primary mt-1" id="not-checked-button" type="button" data-toggle="collapse"
+        data-target="#not-checked" aria-expanded="false" data-parent="#myGroup" aria-controls="not-checked"
+        style="width: auto;">
         Not Checked
     </button>
-    <button class="btn btn-primary mt-1" id="rejected-button" type="button" data-toggle="collapse" data-target="#rejected" aria-expanded="false"
-        data-parent="#myGroup" aria-controls="rejected"style="width: auto;">
+    <button class="btn btn-primary mt-1 " id="rejected-button" type="button" data-toggle="collapse"
+        data-target="#rejected" aria-expanded="false" data-parent="#myGroup" aria-controls="rejected"
+        style="width: auto;">
         Rejected
     </button>
 
     <div class="collapse" id="not-checked">
-        <div class="card card-body">
+        <div class="card card-body card-style">
             <div class="row m-2">
-                <div class="col">Name</div>
-                <div class="col">Resume</div>
-                <div class="col"></div>
+                <div class="col fw-bold">Name</div>
+                <div class="col fw-bold">Resume</div>
+                <div class="col-8"></div>
             </div>
             @foreach (var request in Model.Requests)
             {
@@ -32,46 +34,37 @@
                     <div class="row m-2">
                         <div class="col">@name </div>
                         <div class="col">
-                            <a asp-action="downloadfile" asp-controller="home"
-                        asp-route-fileName=@request.resumePath>Download</a>
+                            <a asp-action="downloadfile" asp-controller="home" asp-route-fileName=@request.resumePath
+                        style="text-decoration: none;">Download</a>
                         </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <form action="requestslist" method="post">
+                        <div class="col-8">
+                            <form action="requestslist" method="post">
+                                <div class="row" style="margin-top: -5px !important;">
+                                    <div class="col-8">
+                                        <input type="text" asp-for="Comment" class="form-control" placeholder="Comment">
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
                                         <input type="hidden" value="@request.Id" asp-for="Id">
-                                        <div class="row">
-                                            <div class="col">
-                                                <input asp-for="Comment" class="form-control" placeholder="Comment">
-                                                <span asp-validation-for="Comment" class="text-danger"></span>
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
-                                            </div>
-                                            <div class="col">
-                                                <a asp-controller="home" asp-action="Interview" asp-route-id="@request.Id"
-                                                asp-route-type="first interview" class="btn btn-primary" style="width: auto;">Interview</a>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-
-
+                                        <a asp-controller="home" asp-action="Interview" asp-route-id="@request.Id"
+                                    asp-route-type="first interview" class="btn btn-primary"
+                                    style="width: auto;">Interview</a>
+                                    </div>
                                 </div>
-
-                            </div>
+                            </form>
                         </div>
                     </div>
+
                 }
             }
         </div>
     </div>
-    <div class="collapse" id="rejected" >
-        <div class="card card-body">
+    <div class="collapse" id="rejected">
+        <div class="card card-body card-style">
             <div class="row m-2">
-                <div class="col">Name</div>
-                <div class="col">Resume</div>
+                <div class="col fw-bold">Name</div>
+                <div class="col fw-bold">Resume</div>
                 <div class="col"></div>
             </div>
             @foreach (var request in Model.Requests)
@@ -85,8 +78,8 @@
                     <div class="row m-2">
                         <div class="col">@name </div>
                         <div class="col">
-                            <a asp-action="downloadfile" asp-controller="home"
-                        asp-route-fileName=@request.resumePath>Download</a>
+                            <a asp-action="downloadfile" asp-controller="home" asp-route-fileName=@request.resumePath
+                        style="text-decoration: none;">Download</a>
                         </div>
                         <div class="col">
                             <div class="row">
@@ -101,6 +94,6 @@
         </div>
     </div>
     <div>
-@section Scripts {
-     <script  src="~/js/RequestsList.js"></script>
-}
+        @section Scripts {
+        <script src="~/js/RequestsList.js"></script>
+        }
