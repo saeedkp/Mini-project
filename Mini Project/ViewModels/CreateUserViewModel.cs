@@ -25,9 +25,11 @@ namespace Mini_Project.ViewModels
         public string ConfirmPassword { get; set; }
 
         [Required]
+        [Display(Name = "First Name")]
         public string firstName { get; set; }
 
         [Required]
+        [Display(Name = "Last Name")]
         public string lastName { get; set; }
     }
 }
