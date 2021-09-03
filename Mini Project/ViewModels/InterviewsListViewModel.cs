@@ -11,6 +11,7 @@ namespace Mini_Project.ViewModels
         public string Comment { get; set; }
         public string Accept  { get; set; }
         public int requestId { get; set; }
+        public int RefreshTime { get; set; }
 
     }
 }

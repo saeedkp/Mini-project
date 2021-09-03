@@ -4,6 +4,13 @@
 
     ViewBag.Title = "List of Interviews";
 }
+@if (Model.RefreshTime != 0)
+{
+    @section AutoRefresh {
+<meta http-equiv="refresh" content="@Model.RefreshTime">
+}
+}
+
 
 
 <div id="myGroup">
@@ -60,20 +67,11 @@
                                         <div class="row">
                                             <div class="col">
                                                 <input hidden value="@request.Id" asp-for="requestId">
-                                                <input asp-for="Comment" class="form-control" placeholder="Comment">
-                                                <span asp-validation-for="Comment" class="text-danger"></span>
                                             </div>
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-danger" style="width: auto;"
-                                            disabled>Reject</button>
-                                            </div>
-                                            <div class="col">
-                                                <a asp-controller="home" asp-action="secondinterview" class="btn btn-primary"
-                                            asp-route-id="@request.Id" asp-route-type="second interview"
-                                            style="width: auto;" disabled>Interview</a>
-                                            </div>
+                                            
+                                            <div>Interview is not started yet!</div>
+                                            
                                         </div>
-
                                     </form>
 
 
@@ -101,7 +99,7 @@
             @foreach (var interview in Model.Interviews)
             {
                 Request request = _requestRepository.GetRequestById(interview.RequestRefId);
-                if (request.state == State.StartInterviewWithHRM)
+                if (request.state == State.EndInterviewWithHRM)
                 {
 
                     var filePath = "~/resumes" + request.resumePath;
@@ -129,19 +127,16 @@
                                                 <span asp-validation-for="Comment" class="text-danger"></span>
                                             </div>
                                             <div class="col">
-                                                <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
-                                            </div>
-                                            <div class="col">
-                                                <a asp-controller="home" asp-action="secondinterview" class="btn btn-primary"
-                                            asp-route-id="@request.Id" asp-route-type="second interview"
-                                            style="width: auto;" >Interview</a>
+                                                <button type="submit" class="btn btn-danger"
+                                            style="width: auto;">Reject</button>
                                             </div>
                                         </div>
-
                                     </form>
-
-
-
+                                    <div class="col">
+                                                <a asp-controller="home" asp-action="secondinterview" class="btn btn-primary"
+                                            asp-route-id="@request.Id" asp-route-type="second interview"
+                                            style="width: auto;">Interview</a>
+                                            </div>
                                 </div>
 
                             </div>
@@ -208,5 +203,5 @@
 
 
     @section Scripts {
-    <script src="~/js/RequestsList.js"></script>
+    <script src="~/js/InterviewsList.js"></script>
     }
