@@ -251,13 +251,16 @@ namespace Mini_Project.Controllers
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
                 interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            foreach(var interview in Interviews){
-                if(interview.DateTime < DateTime.Now){
+            foreach (var interview in Interviews)
+            {
+                if (interview.DateTime < DateTime.Now)
+                {
                     Request request = _requestRepository.GetRequestById(interview.RequestRefId);
-                    if(request.state != State.RejectAfterInterviewWithHRM){
+                    if (request.state != State.RejectAfterInterviewWithHRM)
+                    {
                         request.state = State.EndInterviewWithHRM;
                     }
-                        
+
                 }
             }
 
@@ -266,10 +269,11 @@ namespace Mini_Project.Controllers
 
             interviewsList.Sort((x, y) => DateTime.Compare(x.DateTime, y.DateTime));
             var refreshTime = 0.0;
-            if(interviewsList.Count != 0){
+            if (interviewsList.Count != 0)
+            {
                 refreshTime = (interviewsList.First().DateTime - DateTime.Now).TotalSeconds;
             }
-            
+
             InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
             {
                 Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
@@ -316,13 +320,13 @@ namespace Mini_Project.Controllers
                     if (user.Id != userId)
                     {
                         string Name = user.firstName + " " + user.lastName;
-                        items.Add(new SelectListItem {Text = Name, Value = user.Id});
+                        items.Add(new SelectListItem { Text = Name, Value = user.Id });
                     }
                 }
-                if (await userManager.IsInRoleAsync(user, "TECH"))
+                if (await userManager.IsInRoleAsync(user, "Tech Lead"))
                 {
                     string Name = user.firstName + " " + user.lastName;
-                    items.Add(new SelectListItem {Text = Name, Value = user.Id});
+                    items.Add(new SelectListItem { Text = Name, Value = user.Id });
                 }
             }
             InterviewViewModel interviewViewModel = new InterviewViewModel
@@ -343,18 +347,26 @@ namespace Mini_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                    Interview newInterView = new Interview
-                    {
-                        DateTime = model.DateTime,
-                        Attendance = model.Attendance,
-                        Address = model.Address,
-                        Description = model.Description,
-                        RequestRefId = model.RequestRefId,
-                        UserId = model.UserId,
-                        Type = model.Type
-                    };
+                Interview newInterView = new Interview
+                {
+                    DateTime = model.DateTime,
+                    Attendance = model.Attendance,
+                    Address = model.Address,
+                    Description = model.Description,
+                    RequestRefId = model.RequestRefId,
+                    UserId = model.UserId,
+                    Type = model.Type
+                };
                 newInterView = _interviewRepository.Add(newInterView);
                 Request request = _requestRepository.GetRequestById(model.RequestRefId);
+                string Email = "";
+                foreach (var user in userManager.Users)
+                {
+                    if (user.Id == model.UserId)
+                    {
+                        Email = user.Email;
+                    }
+                }
                 MailRequest mailRequest = new MailRequest
                 {
                     ToEmail = request.Email,
@@ -367,7 +379,19 @@ namespace Mini_Project.Controllers
                 };
 
                 var result = SendMail(mailRequest);
-                request.state = State.InterviewWithHRM;
+                MailRequest employeeMailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Second Interview",
+                    Body = "We set second interview with you for " + request.firstName + " " + request.lastName
+                     + ".<br/>" + "Interview Location: " + newInterView.Address + "<br />" +
+                    "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
+
+                    Attachments = null
+                };
+
+                var res = SendMail(employeeMailRequest);
+                request.state = State.TechInterview;
                 _requestRepository.Update(request);
 
                 return RedirectToAction("interviewslist");
@@ -393,7 +417,7 @@ namespace Mini_Project.Controllers
                     ViewBag.ErrorMessage = $"Request with Code = {model.code} cannot be found";
                     return View("NotFound");
                 }
-                return RedirectToAction("showstatus", "home", new {id = request.Id});
+                return RedirectToAction("showstatus", "home", new { id = request.Id });
             }
 
             return View(model);

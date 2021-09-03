@@ -27,7 +27,7 @@ namespace Mini_Project.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("createrequest", "home");
         }
 
         [HttpGet]
@@ -55,12 +55,12 @@ namespace Mini_Project.Controllers
                     }
                     else
                     {  
-                        if(roles.Contains("HRM")){
+                        if(roles.Contains("HRM") || roles.Contains("Tech Lead")){
                             return RedirectToAction("requestslist", "home");
                         }
                         else
                         {
-                            return RedirectToAction("index", "home"); 
+                            return RedirectToAction("CreateRequest", "home"); 
                         }
                           
                     }
