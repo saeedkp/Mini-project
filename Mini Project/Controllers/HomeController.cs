@@ -251,13 +251,16 @@ namespace Mini_Project.Controllers
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
                 interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            foreach(var interview in Interviews){
-                if(interview.DateTime < DateTime.Now){
+            foreach (var interview in Interviews)
+            {
+                if (interview.DateTime < DateTime.Now)
+                {
                     Request request = _requestRepository.GetRequestById(interview.RequestRefId);
-                    if(request.state != State.RejectAfterInterviewWithHRM){
+                    if (request.state != State.RejectAfterInterviewWithHRM && request.state != State.TechInterview)
+                    {
                         request.state = State.EndInterviewWithHRM;
                     }
-                        
+
                 }
             }
 
@@ -266,10 +269,11 @@ namespace Mini_Project.Controllers
 
             interviewsList.Sort((x, y) => DateTime.Compare(x.DateTime, y.DateTime));
             var refreshTime = 0.0;
-            if(interviewsList.Count != 0){
+            if (interviewsList.Count != 0)
+            {
                 refreshTime = (interviewsList.First().DateTime - DateTime.Now).TotalSeconds;
             }
-            
+
             InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
             {
                 Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
@@ -302,6 +306,91 @@ namespace Mini_Project.Controllers
             }
             return View();
         }
+
+
+
+        [HttpGet]
+        public IActionResult SecondInterviewsList()
+        {
+            IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            foreach (var interview in Interviews)
+            {
+                if (interview.DateTime < DateTime.Now)
+                {
+                    Request request = _requestRepository.GetRequestById(interview.RequestRefId);
+                    if (request.state != State.RejectAfterTechInterview && request.state != State.ObtainDocumentsAndOfficialProcess)
+                    {
+                        request.state = State.EndTechInterview;
+                    }
+
+                }
+            }
+
+            List<Interview> interviewsList = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value && interview.DateTime > DateTime.Now).ToList();
+
+            interviewsList.Sort((x, y) => DateTime.Compare(x.DateTime, y.DateTime));
+            var refreshTime = 0.0;
+            if (interviewsList.Count != 0)
+            {
+                refreshTime = (interviewsList.First().DateTime - DateTime.Now).TotalSeconds;
+            }
+
+            InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
+            {
+                Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value),
+                Comment = "",
+                RefreshTime = (int)refreshTime
+
+            };
+            return View(interviewsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult SecondInterviewsList(InterviewsListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                Request request = _requestRepository.GetRequestById(model.requestId);
+                request.Comment = model.Comment;
+                if (model.Accept == "accept")
+                {
+                    request.state = State.ObtainDocumentsAndOfficialProcess;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Accept",
+                        Body = "you are accepted",
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+                else
+                {
+                    request.state = State.RejectAfterTechInterview;
+                    request = _requestRepository.Update(request);
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = request.Email,
+                        Subject = "Internship Reject",
+                        Body = model.Comment,
+                        Attachments = null
+                    };
+                    var result = SendMail(mailRequest);
+                }
+
+
+
+                return RedirectToAction("secondinterviewslist", "home");
+            }
+            return View();
+        }
+
+
+
         [HttpGet]
         public async Task<IActionResult> SecondInterview(int id, string type)
         {
@@ -316,13 +405,13 @@ namespace Mini_Project.Controllers
                     if (user.Id != userId)
                     {
                         string Name = user.firstName + " " + user.lastName;
-                        items.Add(new SelectListItem {Text = Name, Value = user.Id});
+                        items.Add(new SelectListItem { Text = Name, Value = user.Id });
                     }
                 }
                 if (await userManager.IsInRoleAsync(user, "TECH"))
                 {
                     string Name = user.firstName + " " + user.lastName;
-                    items.Add(new SelectListItem {Text = Name, Value = user.Id});
+                    items.Add(new SelectListItem { Text = Name, Value = user.Id });
                 }
             }
             InterviewViewModel interviewViewModel = new InterviewViewModel
@@ -343,16 +432,16 @@ namespace Mini_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                    Interview newInterView = new Interview
-                    {
-                        DateTime = model.DateTime,
-                        Attendance = model.Attendance,
-                        Address = model.Address,
-                        Description = model.Description,
-                        RequestRefId = model.RequestRefId,
-                        UserId = model.UserId,
-                        Type = model.Type
-                    };
+                Interview newInterView = new Interview
+                {
+                    DateTime = model.DateTime,
+                    Attendance = model.Attendance,
+                    Address = model.Address,
+                    Description = model.Description,
+                    RequestRefId = model.RequestRefId,
+                    UserId = model.UserId,
+                    Type = model.Type
+                };
                 newInterView = _interviewRepository.Add(newInterView);
                 Request request = _requestRepository.GetRequestById(model.RequestRefId);
                 MailRequest mailRequest = new MailRequest
@@ -367,7 +456,7 @@ namespace Mini_Project.Controllers
                 };
 
                 var result = SendMail(mailRequest);
-                request.state = State.InterviewWithHRM;
+                request.state = State.TechInterview;
                 _requestRepository.Update(request);
 
                 return RedirectToAction("interviewslist");
@@ -393,7 +482,7 @@ namespace Mini_Project.Controllers
                     ViewBag.ErrorMessage = $"Request with Code = {model.code} cannot be found";
                     return View("NotFound");
                 }
-                return RedirectToAction("showstatus", "home", new {id = request.Id});
+                return RedirectToAction("showstatus", "home", new { id = request.Id });
             }
 
             return View(model);
