@@ -45,8 +45,8 @@
                                         <span asp-validation-for="Comment" class="text-danger"></span>
                                     </div>
                                     <div class="col">
-                                        <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
                                         <input type="hidden" value="@request.Id" asp-for="Id">
+                                        <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
                                         <a asp-controller="home" asp-action="Interview" asp-route-id="@request.Id"
                                     asp-route-type="first interview" class="btn btn-primary"
                                     style="width: auto;">Interview</a>

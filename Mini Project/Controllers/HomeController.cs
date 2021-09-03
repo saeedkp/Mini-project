@@ -249,11 +249,33 @@ namespace Mini_Project.Controllers
         [HttpGet]
         public IActionResult InterviewsList()
         {
+            IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            foreach(var interview in Interviews){
+                if(interview.DateTime < DateTime.Now){
+                    Request request = _requestRepository.GetRequestById(interview.RequestRefId);
+                    if(request.state != State.RejectAfterInterviewWithHRM){
+                        request.state = State.EndInterviewWithHRM;
+                    }
+                        
+                }
+            }
+
+            List<Interview> interviewsList = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
+                interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value && interview.DateTime > DateTime.Now).ToList();
+
+            interviewsList.Sort((x, y) => DateTime.Compare(x.DateTime, y.DateTime));
+            var refreshTime = 0.0;
+            if(interviewsList.Count != 0){
+                refreshTime = (interviewsList.First().DateTime - DateTime.Now).TotalSeconds;
+            }
+            
             InterviewsListViewModel interviewsListViewModel = new InterviewsListViewModel
             {
                 Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
                 interview.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value),
-                Comment = ""
+                Comment = "",
+                RefreshTime = (int)refreshTime
 
             };
             return View(interviewsListViewModel);
