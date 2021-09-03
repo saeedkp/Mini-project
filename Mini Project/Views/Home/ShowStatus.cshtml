@@ -1,0 +1,78 @@
+﻿@model Request
+
+@{
+    ViewBag.Title = "Show Status Of Request";
+}
+
+<div class="card mb-3">
+    @if (Model.state == State.FirstCheck)
+    {
+        <div class="card-body">
+            Your Request Status : Your request is under initial review.
+        </div>
+    }
+    @if (Model.state == State.RejectByHRM)
+    {
+        <div class="card-body">
+            Your Request Status : Your request was rejected by HRM.
+        </div>
+    }
+    @if (Model.state == State.InterviewWithHRM)
+    {
+        <div class="card-body">
+            Your Request Status : You should do a interview with HRM and
+            the information of interview has been send to your email.
+        </div>
+    }
+    @if (Model.state == State.InterviewWithHRM)
+    {
+        <div class="card-body">
+            Your Request Status : You should do a interview with HRM and
+            the information of interview has been send to your email.
+        </div>
+    }
+    @if (Model.state == State.RejectAfterInterviewWithHRM)
+    {
+        <div class="card-body">
+            Your Request Status : You were rejected after the first interview.
+        </div>
+    }
+    @if (Model.state == State.TechInterview)
+    {
+        <div class="card-body">
+            Your Request Status : You should do a technical interview and
+            the information of interview has been send to your email.
+        </div>
+    }
+    @if (Model.state == State.RejectAfterTechInterview)
+    {
+        <div class="card-body">
+            Your Request Status : You were rejected after the technical interview.
+        </div>
+    }
+    @if (Model.state == State.ObtainDocumentsAndOfficialProcess)
+    {
+        <div class="card-body">
+            Your Request Status : You should now upload your documentation for official process.
+        </div>
+    }
+    @if (Model.state == State.WaitingForDocumentAcception)
+    {
+        <div class="card-body">
+            Your Request Status : We are checking your documents.
+        </div>
+    }
+    @if (Model.state == State.SuccessfulSignUp)
+    {
+        <div class="card-body">
+            Your Request Status : Your sign up finished successfully.
+        </div>
+    }
+    @if (Model.state == State.NeedDocumentsCorrection)
+    {
+        <div class="card-body">
+            Your Request Status : Some of your documents were not complete. Please
+            check the errors.
+        </div>
+    }
+</div>

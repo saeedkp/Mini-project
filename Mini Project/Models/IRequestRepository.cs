@@ -11,6 +11,10 @@ namespace Mini_Project.Models
         IEnumerable<Request> GetAllRequests();
         Request GetRequestById(int id);
         Request Update(Request requestChanges);
+<<<<<<< HEAD
         IEnumerable<Request> GetRequestsByState(State state);
+=======
+        Request GetRequestByFollowUpCode(string code);
+>>>>>>> 3c40af269bf5c79b8b1e276acb94903c6d95fb19
     }
 }

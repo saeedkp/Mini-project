@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mini_Project.Models;
+using Mini_Project.Services;
 using Mini_Project.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,17 @@ namespace Mini_Project.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IMailService mailService;
 
         public AdministrationController(UserManager<ApplicationUser> userManager,
                                         SignInManager<ApplicationUser> signInManager,
-                                        RoleManager<IdentityRole> roleManager)
+                                        RoleManager<IdentityRole> roleManager,
+                                        IMailService mailService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.mailService = mailService;
         }
 
         [HttpGet]
@@ -50,6 +54,17 @@ namespace Mini_Project.Controllers
 
                 if (result.Succeeded)
                 {
+                    MailRequest mailRequest = new MailRequest
+                    {
+                        ToEmail = model.Email,
+                        Subject = "Account Created",
+                        Body = "Your Account is now created " +
+                        "with username : " + model.Email + " And " +
+                        "Password : " + model.Password,
+                        Attachments = null
+                    };
+
+                    var resultMail = SendMail(mailRequest);
                     return RedirectToAction("ListUsers", "Administration");
                 }
 
@@ -466,6 +481,20 @@ namespace Mini_Project.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        private async Task<IActionResult> SendMail([FromForm] MailRequest request)
+        {
+            try
+            {
+                await mailService.SendEmailAsync(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
     }
