@@ -24,9 +24,11 @@ namespace Mini_Project.ViewModels
 
         [Required]
         [Phone]
+        [Display(Name = "Phone Number")]
         public string phoneNumber { get; set; }
 
         [Required]
+        [Display(Name = "Resume")]
         public IFormFile resume{ get; set; }
     }
 }

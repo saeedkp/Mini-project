@@ -24,7 +24,7 @@
             </div>
             @foreach (var request in Model.Requests)
             {
-                if ((int)request.state == 0)
+                if (request.state == State.FirstCheck)
                 {
 
                     var filePath = "~/resumes" + request.resumePath;
@@ -77,7 +77,7 @@
             @foreach (var request in Model.Requests)
 
             {
-                if ((int)request.state == 1)
+                if (request.state == State.RejectByHRM)
                 {
 
                     var filePath = "~/resumes" + request.resumePath;

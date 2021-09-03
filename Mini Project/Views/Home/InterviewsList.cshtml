@@ -7,23 +7,24 @@
 
 
 <div id="myGroup">
-    <button class="btn btn-primary mt-1" id="not-checked-button" type="button" data-toggle="collapse"
-        data-target="#not-checked" aria-expanded="false" data-parent="#myGroup" aria-controls="not-checked"
+    <button class="btn btn-primary mt-1" id="setted-interviews-button" type="button" data-toggle="collapse"
+        data-target="#setted-interviews" aria-expanded="false" data-parent="#myGroup" aria-controls="setted-interviews"
         style="width: auto;">
-        Not Checked
+        Setted Interviews
     </button>
+    <button class="btn btn-primary mt-1" id="ended-interviews-button" type="button" data-toggle="collapse"
+        data-target="#ended-interviews" aria-expanded="false" data-parent="#myGroup" aria-controls="ended-interviews"
+        style="width: auto;">
+        Ended Interviews
+    </button>
+
     <button class="btn btn-primary mt-1" id="rejected-button" type="button" data-toggle="collapse"
         data-target="#rejected" aria-expanded="false" data-parent="#myGroup" aria-controls="rejected"
         style="width: auto;">
         Rejected
     </button>
-    <button class="btn btn-primary mt-1" id="accepted-button" type="button" data-toggle="collapse"
-        data-target="#accepted" aria-expanded="false" data-parent="#myGroup" aria-controls="accepted"
-        style="width: auto;">
-        Accepted
-    </button>
 
-    <div class="collapse" id="not-checked">
+    <div class="collapse" id="setted-interviews">
         <div class="card card-body">
             <div class="row m-2">
                 <div class="col">Name</div>
@@ -58,21 +59,18 @@
                                     <form action="interviewslist" method="post">
                                         <div class="row">
                                             <div class="col">
-                                                <input hidden asp-for="requestId">
+                                                <input hidden value="@request.Id" asp-for="requestId">
                                                 <input asp-for="Comment" class="form-control" placeholder="Comment">
                                                 <span asp-validation-for="Comment" class="text-danger"></span>
                                             </div>
                                             <div class="col">
-                                                <button type="submit" asp-for="Accept" value="0" class="btn btn-danger"
-                                            style="width: auto;">Reject</button>
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" asp-for="Accept" value="1" class="btn btn-success"
-                                            style="width: auto;">Accept</button>
+                                                <button type="submit" class="btn btn-danger" style="width: auto;"
+                                            disabled>Reject</button>
                                             </div>
                                             <div class="col">
                                                 <a asp-controller="home" asp-action="secondinterview" class="btn btn-primary"
-                                                asp-route-id="@request.Id" asp-route-type="secondinterview" style="width: auto;">Interview</a>
+                                            asp-route-id="@request.Id" asp-route-type="second interview"
+                                            style="width: auto;" disabled>Interview</a>
                                             </div>
                                         </div>
 
@@ -89,6 +87,74 @@
             }
         </div>
     </div>
+
+
+    <div class="collapse" id="ended-interviews">
+        <div class="card card-body">
+            <div class="row m-2">
+                <div class="col">Name</div>
+                <div class="col">Resume</div>
+                <div class="col">Time</div>
+                <div class="col">Address</div>
+                <div class="col"></div>
+            </div>
+            @foreach (var interview in Model.Interviews)
+            {
+                Request request = _requestRepository.GetRequestById(interview.RequestRefId);
+                if (request.state == State.StartInterviewWithHRM)
+                {
+
+                    var filePath = "~/resumes" + request.resumePath;
+                    var name = request.firstName + " " + request.lastName;
+                    <div class="row m-2">
+                        <div class="col">@name </div>
+                        <div class="col">
+                            <a asp-action="downloadfile" asp-controller="home"
+                        asp-route-fileName=@request.resumePath>Download</a>
+                        </div>
+                        <div class="col">
+                            @interview.DateTime
+                        </div>
+                        <div class="col">
+                            @interview.Address
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <form action="interviewslist" method="post">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input hidden value="@request.Id" asp-for="requestId">
+                                                <input asp-for="Comment" class="form-control" placeholder="Comment">
+                                                <span asp-validation-for="Comment" class="text-danger"></span>
+                                            </div>
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-danger" style="width: auto;">Reject</button>
+                                            </div>
+                                            <div class="col">
+                                                <a asp-controller="home" asp-action="secondinterview" class="btn btn-primary"
+                                            asp-route-id="@request.Id" asp-route-type="second interview"
+                                            style="width: auto;" >Interview</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+
+
+
     <div class="collapse" id="rejected">
         <div class="card card-body">
             <div class="row m-2">
@@ -140,56 +206,6 @@
         </div>
     </div>
 
-    <div class="collapse" id="accepted">
-        <div class="card card-body">
-            <div class="row m-2">
-                <div class="col">Name</div>
-                <div class="col">Resume</div>
-                <div class="col">Time</div>
-                <div class="col">Address</div>
-                <div class="col"></div>
-            </div>
-            @foreach (var interview in Model.Interviews)
-            {
-                Request request = _requestRepository.GetRequestById(interview.RequestRefId);
-                if (request.state == State.ObtainDocumentsAndOfficialProcess)
-                {
-
-                    var filePath = "~/resumes" + request.resumePath;
-                    var name = request.firstName + " " + request.lastName;
-                    <div class="row m-2">
-                        <div class="col">@name </div>
-                        <div class="col">
-                            <a asp-action="downloadfile" asp-controller="home"
-                        asp-route-fileName=@request.resumePath>Download</a>
-                        </div>
-                        <div class="col">
-                            @interview.DateTime
-                        </div>
-                        <div class="col">
-                            @interview.Address
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <form action="interviewslist" method="post">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="text-danger">accepted</div>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
 
     @section Scripts {
     <script src="~/js/RequestsList.js"></script>

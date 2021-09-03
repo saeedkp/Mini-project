@@ -244,6 +244,12 @@ namespace Mini_Project.Migrations
                     b.Property<int>("RequestRefId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("interviews");

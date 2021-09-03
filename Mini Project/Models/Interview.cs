@@ -19,8 +19,12 @@ namespace Mini_Project.Models
         [Required]
         public string Address { get; set; }
         public string Description { get; set; }
-        [ForeignKey("Request")]
         public int RequestRefId { get; set; }
+        // [ForeignKey("RequestRefId")]
+        // public Request Request { get; set; }
+
+        public string UserId{ get; set; }
+        public string Type { get; set; }
 
     }
 }
