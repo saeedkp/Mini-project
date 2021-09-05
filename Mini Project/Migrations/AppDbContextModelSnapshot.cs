@@ -48,36 +48,36 @@ namespace Mini_Project.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68587266-51ea-492e-88d5-f74e6639238c",
-                            ConcurrencyStamp = "9b6dd4fa-0427-4135-a090-7dc110561788",
+                            Id = "f51bcd6f-92b6-4ebe-85f4-c769fe54775a",
+                            ConcurrencyStamp = "f074f257-1685-4076-be5a-b101eb0f0f75",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "65aa5753-f72d-4a18-9edd-acc3047b9b10",
-                            ConcurrencyStamp = "7e83289c-a4c2-4403-9629-a276e473a5ac",
+                            Id = "102e1383-e811-4268-8fdc-696f83e8f55f",
+                            ConcurrencyStamp = "beba5d94-e348-4ec3-a927-07f04b651705",
                             Name = "HRM",
                             NormalizedName = "HRM"
                         },
                         new
                         {
-                            Id = "a506ffb1-cf4e-4605-9bd3-56721ae93784",
-                            ConcurrencyStamp = "8f31c10c-a8f1-4a8b-9ccd-10042840cba6",
+                            Id = "4a9144f0-3eec-4ff0-958f-743ac474568a",
+                            ConcurrencyStamp = "fcda6aee-9bff-4d4a-93d4-d1d156154b0e",
                             Name = "Tech Lead",
                             NormalizedName = "TECH LEAD"
                         },
                         new
                         {
-                            Id = "b621cdcf-2ff4-461d-88b5-21e445c789f4",
-                            ConcurrencyStamp = "24792f93-0ade-4c50-9ad0-57d90d293194",
+                            Id = "0132f2c1-5ba8-413d-a2a0-9c120039c520",
+                            ConcurrencyStamp = "d7b0ca69-76ce-4e2a-af7e-4eeef6c9150e",
                             Name = "Office Manager",
                             NormalizedName = "OFFICE MANAGER"
                         },
                         new
                         {
-                            Id = "f0e92155-1a16-4f39-9b73-1b744c32093c",
-                            ConcurrencyStamp = "7b776949-6a9a-4b4a-ab08-56be91a3596d",
+                            Id = "ce263687-e36c-471c-a8fd-b365bc816088",
+                            ConcurrencyStamp = "889503ca-337e-49ef-a00b-d39f47efe236",
                             Name = "Trainee",
                             NormalizedName = "TRAINEE"
                         });
@@ -238,6 +238,9 @@ namespace Mini_Project.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("documentsPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");

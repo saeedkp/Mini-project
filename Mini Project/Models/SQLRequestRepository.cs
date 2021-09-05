@@ -47,14 +47,12 @@ namespace Mini_Project.Models
 
         public Request GetRequestByFollowUpCode(string code)
         {
-            return context.Requests.FirstOrDefault(r => r.followUpCode == code) ?? null;
+            return context.Requests.FirstOrDefault(r => r.followUpCode == code);
         }
 
-        public IEnumerable<Request> GetRequestByEmail(string email)
+        public Request GetRequestByEmail(string email)
         {
-            IEnumerable<Request> requests = GetAllRequests();
-            IEnumerable<Request> filterdRequests = requests.Where(request => request.Email == email);
-            return filterdRequests;
+            return context.Requests.FirstOrDefault(r => r.Email == email);
         }
     }
 }

@@ -10,8 +10,8 @@ using Mini_Project.Models;
 namespace Mini_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210904053425_initializer")]
-    partial class initializer
+    [Migration("20210905163837_tesssstu")]
+    partial class tesssstu
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,43 @@ namespace Mini_Project.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f51bcd6f-92b6-4ebe-85f4-c769fe54775a",
+                            ConcurrencyStamp = "f074f257-1685-4076-be5a-b101eb0f0f75",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "102e1383-e811-4268-8fdc-696f83e8f55f",
+                            ConcurrencyStamp = "beba5d94-e348-4ec3-a927-07f04b651705",
+                            Name = "HRM",
+                            NormalizedName = "HRM"
+                        },
+                        new
+                        {
+                            Id = "4a9144f0-3eec-4ff0-958f-743ac474568a",
+                            ConcurrencyStamp = "fcda6aee-9bff-4d4a-93d4-d1d156154b0e",
+                            Name = "Tech Lead",
+                            NormalizedName = "TECH LEAD"
+                        },
+                        new
+                        {
+                            Id = "0132f2c1-5ba8-413d-a2a0-9c120039c520",
+                            ConcurrencyStamp = "d7b0ca69-76ce-4e2a-af7e-4eeef6c9150e",
+                            Name = "Office Manager",
+                            NormalizedName = "OFFICE MANAGER"
+                        },
+                        new
+                        {
+                            Id = "ce263687-e36c-471c-a8fd-b365bc816088",
+                            ConcurrencyStamp = "889503ca-337e-49ef-a00b-d39f47efe236",
+                            Name = "Trainee",
+                            NormalizedName = "TRAINEE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -203,6 +240,9 @@ namespace Mini_Project.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("documentsPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");

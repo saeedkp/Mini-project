@@ -501,12 +501,16 @@ namespace Mini_Project.Controllers
             {
                 Request request = _requestRepository.GetRequestByFollowUpCode(model.code);
 
-                if (Request == null)
+                if (request == null)
                 {
                     ViewBag.ErrorMessage = $"Request with Code = {model.code} cannot be found";
                     return View("NotFound");
                 }
-                return RedirectToAction("showstatus", "home", new { id = request.Id });
+                else
+                {
+                    return RedirectToAction("showstatus", "home", new { id = request.Id });
+                }
+                
             }
 
             return View(model);
@@ -523,16 +527,41 @@ namespace Mini_Project.Controllers
         [AllowAnonymous]
         public IActionResult IsEmailInUse(string email)
         {
-            var requests = _requestRepository.GetRequestByEmail(email);
+            var request = _requestRepository.GetRequestByEmail(email);
 
-            if (requests.Any())
+            if (request == null)
             {
-                return Json($"Email {email} is already in use");  
+                return Json(true);   
+            }
+            else
+            {
+                return Json($"Email {email} is already in use");
+            }
+        }
+
+        [HttpPost]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RequestExistsWithEmailAndIsAccepted(string email)
+        {
+            Request request = _requestRepository.GetRequestByEmail(email);
+
+            if (request == null)
+            {
+                return Json($"There is no request with email : " +
+                    $"{email}. Please make a request first.");
+            }
+            else if (request.state != State.ObtainDocumentsAndOfficialProcess)
+            {
+                return Json($"Your Request is in the state: " +
+                    $" {request.state}. So you can't register " +
+                    $"until you get accepted.");
             }
             else
             {
                 return Json(true);
             }
+            
         }
     }
 }

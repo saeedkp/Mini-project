@@ -73,5 +73,12 @@ namespace Mini_Project.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

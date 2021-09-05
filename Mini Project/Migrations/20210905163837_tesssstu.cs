@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mini_Project.Migrations
 {
-    public partial class initializer : Migration
+    public partial class tesssstu : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,7 @@ namespace Mini_Project.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     firstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     lastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    documentsPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -191,6 +192,18 @@ namespace Mini_Project.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "f51bcd6f-92b6-4ebe-85f4-c769fe54775a", "f074f257-1685-4076-be5a-b101eb0f0f75", "Admin", "ADMIN" },
+                    { "102e1383-e811-4268-8fdc-696f83e8f55f", "beba5d94-e348-4ec3-a927-07f04b651705", "HRM", "HRM" },
+                    { "4a9144f0-3eec-4ff0-958f-743ac474568a", "fcda6aee-9bff-4d4a-93d4-d1d156154b0e", "Tech Lead", "TECH LEAD" },
+                    { "0132f2c1-5ba8-413d-a2a0-9c120039c520", "d7b0ca69-76ce-4e2a-af7e-4eeef6c9150e", "Office Manager", "OFFICE MANAGER" },
+                    { "ce263687-e36c-471c-a8fd-b365bc816088", "889503ca-337e-49ef-a00b-d39f47efe236", "Trainee", "TRAINEE" }
                 });
 
             migrationBuilder.CreateIndex(
