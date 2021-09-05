@@ -13,5 +13,6 @@ namespace Mini_Project.Models
         Request Update(Request requestChanges);
         IEnumerable<Request> GetRequestsByState(State state);
         Request GetRequestByFollowUpCode(string code);
+        IEnumerable<Request> GetRequestByEmail(string email);
     }
 }

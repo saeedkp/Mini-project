@@ -44,6 +44,43 @@ namespace Mini_Project.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "68587266-51ea-492e-88d5-f74e6639238c",
+                            ConcurrencyStamp = "9b6dd4fa-0427-4135-a090-7dc110561788",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "65aa5753-f72d-4a18-9edd-acc3047b9b10",
+                            ConcurrencyStamp = "7e83289c-a4c2-4403-9629-a276e473a5ac",
+                            Name = "HRM",
+                            NormalizedName = "HRM"
+                        },
+                        new
+                        {
+                            Id = "a506ffb1-cf4e-4605-9bd3-56721ae93784",
+                            ConcurrencyStamp = "8f31c10c-a8f1-4a8b-9ccd-10042840cba6",
+                            Name = "Tech Lead",
+                            NormalizedName = "TECH LEAD"
+                        },
+                        new
+                        {
+                            Id = "b621cdcf-2ff4-461d-88b5-21e445c789f4",
+                            ConcurrencyStamp = "24792f93-0ade-4c50-9ad0-57d90d293194",
+                            Name = "Office Manager",
+                            NormalizedName = "OFFICE MANAGER"
+                        },
+                        new
+                        {
+                            Id = "f0e92155-1a16-4f39-9b73-1b744c32093c",
+                            ConcurrencyStamp = "7b776949-6a9a-4b4a-ab08-56be91a3596d",
+                            Name = "Trainee",
+                            NormalizedName = "TRAINEE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

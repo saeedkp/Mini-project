@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using Mini_Project.Models;
 using Mini_Project.Services;
 using Mini_Project.ViewModels;
@@ -24,16 +25,19 @@ namespace Mini_Project.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IInterviewRepository _interviewRepository;
+        private readonly ILogger<HomeController> logger;
 
         public HomeController(IWebHostEnvironment hostingEnvironment,
                                 IMailService mailService,
                                 IRequestRepository requestRepository,
                                 RoleManager<IdentityRole> roleManager,
                                 UserManager<ApplicationUser> userManager,
-                                IInterviewRepository interviewRepository)
+                                IInterviewRepository interviewRepository,
+                                ILogger<HomeController> logger)
         {
             _requestRepository = requestRepository;
             _interviewRepository = interviewRepository;
+            this.logger = logger;
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
@@ -512,6 +516,23 @@ namespace Mini_Project.Controllers
         {
             Request request = _requestRepository.GetRequestById(id);
             return View(request);
+        }
+
+        [HttpPost]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IsEmailInUse(string email)
+        {
+            var requests = _requestRepository.GetRequestByEmail(email);
+
+            if (requests.Any())
+            {
+                return Json($"Email {email} is already in use");  
+            }
+            else
+            {
+                return Json(true);
+            }
         }
     }
 }

@@ -49,5 +49,12 @@ namespace Mini_Project.Models
         {
             return context.Requests.FirstOrDefault(r => r.followUpCode == code) ?? null;
         }
+
+        public IEnumerable<Request> GetRequestByEmail(string email)
+        {
+            IEnumerable<Request> requests = GetAllRequests();
+            IEnumerable<Request> filterdRequests = requests.Where(request => request.Email == email);
+            return filterdRequests;
+        }
     }
 }

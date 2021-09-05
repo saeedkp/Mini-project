@@ -10,8 +10,8 @@ using Mini_Project.Models;
 namespace Mini_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210903114811_database")]
-    partial class database
+    [Migration("20210904053425_initializer")]
+    partial class initializer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
