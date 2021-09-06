@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mini_Project.Migrations
 {
-    public partial class tesssstu : Migration
+    public partial class tttr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,8 @@ namespace Mini_Project.Migrations
                     resumePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     state = table.Column<int>(type: "int", nullable: true),
                     followUpCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    documentsPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -199,11 +200,11 @@ namespace Mini_Project.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "f51bcd6f-92b6-4ebe-85f4-c769fe54775a", "f074f257-1685-4076-be5a-b101eb0f0f75", "Admin", "ADMIN" },
-                    { "102e1383-e811-4268-8fdc-696f83e8f55f", "beba5d94-e348-4ec3-a927-07f04b651705", "HRM", "HRM" },
-                    { "4a9144f0-3eec-4ff0-958f-743ac474568a", "fcda6aee-9bff-4d4a-93d4-d1d156154b0e", "Tech Lead", "TECH LEAD" },
-                    { "0132f2c1-5ba8-413d-a2a0-9c120039c520", "d7b0ca69-76ce-4e2a-af7e-4eeef6c9150e", "Office Manager", "OFFICE MANAGER" },
-                    { "ce263687-e36c-471c-a8fd-b365bc816088", "889503ca-337e-49ef-a00b-d39f47efe236", "Trainee", "TRAINEE" }
+                    { "d7e66e4e-5af2-48e8-b9e3-ac2670056a55", "b0860af1-0f14-4b9c-a2d1-ee6ba337fb34", "Admin", "ADMIN" },
+                    { "d496bb77-7ea1-44fe-8cd9-19f0a9a87b50", "7b119a2b-fa9a-4c02-a0a8-264251a804b2", "HRM", "HRM" },
+                    { "a2cc7986-7022-40d9-9904-bd5ca5188807", "4c327116-87a0-4afe-b302-7a6e4fd1f5d0", "Tech Lead", "TECH LEAD" },
+                    { "7966fb99-9cd1-457d-abe8-640b5c721238", "daaedf83-306a-4a56-ba6e-4d919cbbd052", "Office Manager", "OFFICE MANAGER" },
+                    { "274a75b6-498b-4bb8-81c7-2e4d89e80d3c", "c8e7b863-c5a4-4b91-89cd-858e1a3cd548", "Trainee", "TRAINEE" }
                 });
 
             migrationBuilder.CreateIndex(

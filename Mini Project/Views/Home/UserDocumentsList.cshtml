@@ -1,0 +1,99 @@
+﻿@model AcceptedRequestListViewModel
+@{
+
+    ViewBag.Title = "List of Accepted Requests Documents";
+}
+
+
+<div id="myGroup">
+    <button class="btn btn-primary mt-1" id="not-checked-button" type="button" data-toggle="collapse"
+            data-target="#not-checked" aria-expanded="false" data-parent="#myGroup" aria-controls="not-checked"
+            style="width: auto;">
+        Not Checked
+    </button>
+    <button class="btn btn-primary mt-1 " id="need-correction-button" type="button" data-toggle="collapse"
+            data-target="#need-correction" aria-expanded="false" data-parent="#myGroup" aria-controls="need-correction"
+            style="width: auto;">
+        Need Correction
+    </button>
+
+    <div class="collapse" id="not-checked">
+        <div class="card card-body card-style">
+            <div class="row m-2">
+                <div class="col fw-bold">Name</div>
+                <div class="col fw-bold">Documents</div>
+                <div class="col-8"></div>
+            </div>
+            @foreach (var request in Model.Requests)
+            {
+                if (request.state == State.WaitingForDocumentAcception)
+                {
+
+                    var filePath = "~/documents" + request.documentsPath;
+                    var name = @request.firstName + " " + @request.lastName;
+                    <div class="row m-2">
+                        <div class="col">@name </div>
+                        <div class="col">
+                            <a asp-action="DownloadDocs" asp-controller="home" asp-route-fileName=@request.documentsPath
+                               style="text-decoration: none;">Download</a>
+                        </div>
+                        <div class="col-8">
+                            <form action="UserDocumentsList" method="post">
+                                <div class="row" style="margin-top: -5px !important;">
+                                    <div class="col-8">
+                                        <input type="text" asp-for="Comment" class="form-control" placeholder="Comment">
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>
+                                    <div class="col">
+                                        <input type="hidden" value="@request.Id" asp-for="Id">
+                                        <button type="submit" class="btn btn-danger" style="width: auto;">Need Correction</button>
+                                        <a asp-controller="home" asp-action="fullsignin" asp-route-id="@request.Id"
+                                           class="btn btn-primary"
+                                           style="width: auto;">Accept</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+    <div class="collapse" id="need-correction">
+        <div class="card card-body card-style">
+            <div class="row m-2">
+                <div class="col fw-bold">Name</div>
+                <div class="col fw-bold">Documents</div>
+                <div class="col"></div>
+            </div>
+            @foreach (var request in Model.Requests)
+
+            {
+                if (request.state == State.NeedDocumentsCorrection)
+                {
+
+                    var filePath = "~/documents" + request.documentsPath;
+                    var name = @request.firstName + " " + @request.lastName;
+                    <div class="row m-2">
+                        <div class="col">@name </div>
+                        <div class="col">
+                            <a asp-action="downloaddocs" asp-controller="home" asp-route-fileName=@request.documentsPath
+                               style="text-decoration: none;">Download</a>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-danger">Need Correction</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div>
+        @section Scripts {
+            <script src="~/js/AcceptedRequestsList.js"></script>
+        }

@@ -563,5 +563,80 @@ namespace Mini_Project.Controllers
             }
             
         }
+
+        [HttpGet]
+        public IActionResult UserDocumentsList()
+        {
+            AcceptedRequestListViewModel acceptedRequestsListViewModel = new AcceptedRequestListViewModel
+            {
+                Requests = _requestRepository.GetAllRequests(),
+                Comment = ""
+            };
+            return View(acceptedRequestsListViewModel);
+        }
+        [HttpPost]
+        public IActionResult UserDocumentsList(AcceptedRequestListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(model.Id);
+                request.Comment = model.Comment;
+                request.state = State.NeedDocumentsCorrection;
+
+                request = _requestRepository.Update(request);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Need Document Correction",
+                    Body = request.Comment,
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("userdocumentslist", "home");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> FullSignIn(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(id);
+                request.state = State.SuccessfulSignUp;
+
+                var user = await userManager.FindByEmailAsync(request.Email);
+                user.documentsPath = request.documentsPath;
+
+
+                request = _requestRepository.Update(request);
+                var resultUpdate = await userManager.UpdateAsync(user);
+
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Completed Sign Up",
+                    Body = "Your Sign Up Completed Successfully",
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("userdocumentslist", "home");
+            }
+            return View();
+        }
+
+
+        public FileResult DownloadDocs(string fileName)
+        {
+            //Build the File Path.
+            string path = Path.Combine(hostingEnvironment.WebRootPath, "documents/") + fileName;
+
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            //Send the File to Download.
+            return File(bytes, "application/pdf", "document.pdf");
+        }
     }
 }

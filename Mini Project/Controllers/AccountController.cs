@@ -113,7 +113,6 @@ namespace Mini_Project.Controllers
                     Email = model.Email,
                     firstName = request.firstName,
                     lastName = request.lastName,
-                    documentsPath = UniqueFileName
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -122,6 +121,7 @@ namespace Mini_Project.Controllers
 
                 if (result.Succeeded || roleResult.Succeeded)
                 {
+                    request.documentsPath = UniqueFileName;
                     request.state = State.WaitingForDocumentAcception;
                     _requestRepository.Update(request);
                     await signInManager.SignInAsync(user, isPersistent: false);

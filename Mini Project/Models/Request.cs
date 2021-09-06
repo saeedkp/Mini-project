@@ -35,5 +35,7 @@ namespace Mini_Project.Models
         public string followUpCode { get; set; }
 
         public string Comment { get; set; }
+
+        public string documentsPath { get; set; }
     }
 }
