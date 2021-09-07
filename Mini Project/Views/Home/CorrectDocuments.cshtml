@@ -1,0 +1,37 @@
+﻿@model CorrectDocumentsViewModel
+
+@{
+    ViewBag.Title = "Correct Documents";
+}
+
+<form enctype="multipart/form-data" asp-controller="home" asp-action="CorrectDocuments" method="post" class="mt-3">
+    <div class="form-group row m-3">
+        <label asp-for="Documents" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input asp-for="Documents" class="form-control" custom-file-input>
+                <label class="custom-file-label">Choose File...</label>
+            </div>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+
+</form>

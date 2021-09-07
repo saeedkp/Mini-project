@@ -574,6 +574,7 @@ namespace Mini_Project.Controllers
             };
             return View(acceptedRequestsListViewModel);
         }
+
         [HttpPost]
         public IActionResult UserDocumentsList(AcceptedRequestListViewModel model)
         {
@@ -626,6 +627,36 @@ namespace Mini_Project.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult CorrectDocuments()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CorrectDocuments(CorrectDocumentsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var user = await userManager.FindByIdAsync(id);
+                var request = _requestRepository.GetRequestByEmail(user.Email);
+
+                string UniqueFileName = ProcessUploadedDoc(model);
+
+                request.documentsPath = UniqueFileName;
+                request.state = State.WaitingForDocumentAcception;
+                user.documentsPath = UniqueFileName;
+
+                _requestRepository.Update(request);
+                var result = userManager.UpdateAsync(user);
+;
+                return RedirectToAction("createrequest", "home");
+            }
+
+            return View(model);
+        }
+
 
         public FileResult DownloadDocs(string fileName)
         {
@@ -637,6 +668,23 @@ namespace Mini_Project.Controllers
 
             //Send the File to Download.
             return File(bytes, "application/pdf", "document.pdf");
+        }
+
+        private string ProcessUploadedDoc(CorrectDocumentsViewModel model)
+        {
+            string UniqueFileName = null;
+            if (model.Documents != null)
+            {
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "documents");
+                UniqueFileName = Guid.NewGuid().ToString() + "_" + model.Documents.FileName;
+                string filePath = Path.Combine(uploadsFolder, UniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Documents.CopyTo(fileStream);
+                }
+            }
+
+            return UniqueFileName;
         }
     }
 }
