@@ -46,7 +46,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("HRM") || User.IsInRole("Tech Lead")))
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("HRM") || User.IsInRole("Tech Lead") || User.IsInRole("Office Manager")))
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -61,12 +61,18 @@
                                 </div>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" asp-action="followrequest" asp-controller="home">Follow Up Request</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" asp-action="correctdocuments" asp-controller="home">Correct Documents</a>
-                        </li>
+                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (User.IsInRole("Trainee"))))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" asp-action="followrequest" asp-controller="home">Follow Up Request</a>
+                            </li>
+                        }
+                        @if ((signInManager.IsSignedIn(User) && (User.IsInRole("Trainee"))))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" asp-action="correctdocuments" asp-controller="home">Correct Documents</a>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         @if (signInManager.IsSignedIn(User))
