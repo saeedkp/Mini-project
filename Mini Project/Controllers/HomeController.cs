@@ -577,7 +577,7 @@ namespace Mini_Project.Controllers
             }
             else if (request.state != State.ObtainDocumentsAndOfficialProcess)
             {
-                Dictionary<State, string> states = new Dictionary<State, string>();
+                Dictionary<State?, string> states = new Dictionary<State?, string>();
 
                 states.Add(State.FirstCheck, "Initial Review");
                 states.Add(State.RejectByHRM, "Rejected After Initial Review");

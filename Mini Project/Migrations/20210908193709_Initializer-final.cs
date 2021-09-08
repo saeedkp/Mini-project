@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mini_Project.Migrations
 {
-    public partial class tttr : Migration
+    public partial class Initializerfinal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -200,12 +200,22 @@ namespace Mini_Project.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d7e66e4e-5af2-48e8-b9e3-ac2670056a55", "b0860af1-0f14-4b9c-a2d1-ee6ba337fb34", "Admin", "ADMIN" },
-                    { "d496bb77-7ea1-44fe-8cd9-19f0a9a87b50", "7b119a2b-fa9a-4c02-a0a8-264251a804b2", "HRM", "HRM" },
-                    { "a2cc7986-7022-40d9-9904-bd5ca5188807", "4c327116-87a0-4afe-b302-7a6e4fd1f5d0", "Tech Lead", "TECH LEAD" },
-                    { "7966fb99-9cd1-457d-abe8-640b5c721238", "daaedf83-306a-4a56-ba6e-4d919cbbd052", "Office Manager", "OFFICE MANAGER" },
-                    { "274a75b6-498b-4bb8-81c7-2e4d89e80d3c", "c8e7b863-c5a4-4b91-89cd-858e1a3cd548", "Trainee", "TRAINEE" }
+                    { "82c753f7-5d6f-41c2-9522-756d2bf115d5", "4f55fb99-50be-46c8-89e0-087a5b2bdd66", "Admin", "ADMIN" },
+                    { "f74389a4-0535-4989-8f51-be7e45b4593f", "9364a664-25f8-41bb-8117-88b12d9b6c50", "HRM", "HRM" },
+                    { "04dca6f8-cdd6-4d5c-a6ad-dbbeedd24432", "8ba52ded-023d-4f1f-bbc2-241def8a2708", "Tech Lead", "TECH LEAD" },
+                    { "40720f63-d8ea-4f0a-8600-2f6f6234bc2a", "225c1566-472c-44a0-8b83-9b8251efea83", "Office Manager", "OFFICE MANAGER" },
+                    { "51ab9be0-cab3-4d5b-84d4-fc408d61a7b0", "4704cbcc-ca0d-4efe-8cd2-ab82fa57e484", "Trainee", "TRAINEE" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "documentsPath", "firstName", "lastName" },
+                values: new object[] { "2e0823fa-ec23-4531-9fd3-70aa20a11f32", 0, "c564b69d-0fb1-4174-82c6-943479f1ef4e", "admin@gmail.com", false, false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEEXMuwEGCgzamS5nuHBClZnJJ4i7PqXSiA+UqFm8DUBxvCziaFfEwDEHViFOPp8yag==", null, false, "44a9be7d-7f53-468a-a785-9ac6cae6e073", false, "admin@gmail.com", null, "internship", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "82c753f7-5d6f-41c2-9522-756d2bf115d5", "2e0823fa-ec23-4531-9fd3-70aa20a11f32" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
