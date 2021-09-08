@@ -11,9 +11,9 @@
             Your Request Status : Your request is under initial review.
         </div>
         <div>
-            <a asp-action="createrequest" asp-controller="home"
+            <a asp-action="index" asp-controller="home"
                class="btn btn-primary mb-3" style="width:auto">
-                Create New Request
+                Home
             </a>
         </div>
     }
@@ -35,6 +35,12 @@
             Your Request Status : You should do a interview with HRM and
             the information of interview has been send to your email.
         </div>
+        <div>
+            <a asp-action="index" asp-controller="home"
+               class="btn btn-primary mb-3" style="width:auto">
+                Home
+            </a>
+        </div>
     }
     @if (Model.state == State.RejectAfterInterviewWithHRM)
     {
@@ -53,6 +59,12 @@
         <div class="card-body">
             Your Request Status : You should do a technical interview and
             the information of interview has been send to your email.
+        </div>
+        <div>
+            <a asp-action="index" asp-controller="home"
+               class="btn btn-primary mb-3" style="width:auto">
+                Home
+            </a>
         </div>
     }
     @if (Model.state == State.RejectAfterTechInterview)
@@ -83,6 +95,12 @@
     {
         <div class="card-body">
             Your Request Status : We are checking your documents.
+        </div>
+        <div>
+            <a asp-action="index" asp-controller="home"
+               class="btn btn-primary mb-3" style="width:auto">
+                Home
+            </a>
         </div>
     }
     @if (Model.state == State.SuccessfulSignUp)
@@ -116,12 +134,24 @@
             Your Request Status : You've done your first interview. Result will be
             send to your email.
         </div>
+        <div>
+            <a asp-action="index" asp-controller="home"
+               class="btn btn-primary mb-3" style="width:auto">
+                Home
+            </a>
+        </div>
     }
     @if (Model.state == State.EndTechInterview)
     {
         <div class="card-body">
             Your Request Status : You've done your second interview. Result will be
             send to your email.
+        </div>
+        <div>
+            <a asp-action="index" asp-controller="home"
+               class="btn btn-primary mb-3" style="width:auto">
+                Home
+            </a>
         </div>
     }
 </div>

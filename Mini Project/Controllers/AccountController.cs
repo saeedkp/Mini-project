@@ -112,11 +112,20 @@ namespace Mini_Project.Controllers
 
                 var roleResult = await userManager.AddToRoleAsync(user, "Trainee");
 
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = model.Email,
+                    Subject = "Successful Registration",
+                    Body = "You have successfully registered in internship site with Email : " + model.Email,
+                    Attachments = null
+                };
+
                 if (result.Succeeded || roleResult.Succeeded)
                 {
                     request.documentsPath = UniqueFileName;
                     request.state = State.WaitingForDocumentAcception;
                     _requestRepository.Update(request);
+                    var resultMail = SendMail(mailRequest);
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "home");
                 }
@@ -129,6 +138,8 @@ namespace Mini_Project.Controllers
 
             return View(model);
         }
+
+        [AllowAnonymous]
         private string ProcessUploadedFile(RegisterViewModel model)
         {
             string UniqueFileName = null;
@@ -144,6 +155,21 @@ namespace Mini_Project.Controllers
             }
 
             return UniqueFileName;
+        }
+
+        [AllowAnonymous]
+        private async Task<IActionResult> SendMail([FromForm] MailRequest request)
+        {
+            try
+            {
+                await mailService.SendEmailAsync(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
     }

@@ -79,8 +79,10 @@ namespace Mini_Project.Controllers
                 MailRequest mailRequest = new MailRequest
                 {
                     ToEmail = model.Email,
-                    Subject = "Confirmation Email",
-                    Body = "Your Code is : " + UniqueFollowUpCode,
+                    Subject = "Follow Up Email",
+                    Body = "You made a internship request." + "<br />" +
+                    "Your follow up code to see the status of your " +
+                    "request is : " + "<br />" + UniqueFollowUpCode,
                     Attachments = null
                 };
 
@@ -99,8 +101,8 @@ namespace Mini_Project.Controllers
                         {
                             ToEmail = user.Email,
                             Subject = "New Request Available",
-                            Body = "A New Request has been created," +
-                        " Please check it in your panel. Thanks.",
+                            Body = "A New internship request has been created." + "<br />" +
+                            "Please check it in your panel in requests list. Thanks.",
                             Attachments = null
                         };
 
@@ -115,6 +117,7 @@ namespace Mini_Project.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         private string ProcessUploadedFile(AddRequestViewModel model)
         {
             string UniqueFileName = null;
@@ -132,6 +135,7 @@ namespace Mini_Project.Controllers
             return UniqueFileName;
         }
 
+        [AllowAnonymous]
         private string ProcessFollowUpCode(AddRequestViewModel model)
         {
             string UniqueCode = null;
@@ -192,6 +196,8 @@ namespace Mini_Project.Controllers
             }
             return View();
         }
+
+        [AllowAnonymous]
         public FileResult DownloadFile(string fileName)
         {
             //Build the File Path.
@@ -381,7 +387,7 @@ namespace Mini_Project.Controllers
                     {
                         ToEmail = request.Email,
                         Subject = "Internship Accept",
-                        Body = "you are accepted",
+                        Body = "Congratulations. You are accepted.",
                         Attachments = null
                     };
                     var result = SendMail(mailRequest);
@@ -638,7 +644,7 @@ namespace Mini_Project.Controllers
                 {
                     ToEmail = request.Email,
                     Subject = "Completed Sign Up",
-                    Body = "Your Sign Up Completed Successfully",
+                    Body = "Your sign up completed successfully",
                     Attachments = null
                 };
 
@@ -694,6 +700,7 @@ namespace Mini_Project.Controllers
             return File(bytes, "application/pdf", "document.pdf");
         }
 
+        [AllowAnonymous]
         private string ProcessUploadedDoc(CorrectDocumentsViewModel model)
         {
             string UniqueFileName = null;

@@ -58,9 +58,9 @@ namespace Mini_Project.Controllers
                     {
                         ToEmail = model.Email,
                         Subject = "Account Created",
-                        Body = "Your Account is now created " +
-                        "with username : " + model.Email + " And " +
-                        "Password : " + model.Password,
+                        Body = "Your Account is now created." + "<br />" +
+                        "Your username is: " + model.Email + "<br />" +
+                        "Your password is: " + model.Password,
                         Attachments = null
                     };
 
