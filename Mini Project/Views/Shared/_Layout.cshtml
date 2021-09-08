@@ -46,32 +46,93 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("HRM") || User.IsInRole("Tech Lead") || User.IsInRole("Office Manager")))
-                        {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Actions
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-controller="home" asp-action="requestslist">Request List</a>
-                                    <a class="dropdown-item" asp-controller="home" asp-action="interviewslist">Interview List</a>
-                                    <a class="dropdown-item" asp-controller="home" asp-action="secondinterviewslist">Second Interview List</a>
-                                    <a class="dropdown-item" asp-controller="home" asp-action="UserDocumentsList">Documents List</a>
-                                </div>
-                            </li>
-                        }
-                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (User.IsInRole("Trainee"))))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" asp-action="followrequest" asp-controller="home">Follow Up Request</a>
-                            </li>
-                        }
-                        @if ((signInManager.IsSignedIn(User) && (User.IsInRole("Trainee"))))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" asp-action="correctdocuments" asp-controller="home">Correct Documents</a>
-                            </li>
+                        <li>
+                            <a class="nav-link" aria-current="page" asp-action="index"
+                               asp-controller="home">Home</a>
+                        </li>
+                        @{
+                            if (!signInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="home" asp-action="createrequest">Create Request</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="followrequest">Follow Request</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="administration" asp-action="listusers">Users List</a>
+                                        <a class="dropdown-item" asp-controller="administration" asp-action="listroles">Roles List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="requestslist">Request List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="interviewslist">Interview List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="secondinterviewslist">Second Interview List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="UserDocumentsList">Documents List</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (signInManager.IsSignedIn(User) && User.IsInRole("HRM"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="home" asp-action="requestslist">Request List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="interviewslist">Interview List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="secondinterviewslist">Second Interview List</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="UserDocumentsList">Documents List</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (signInManager.IsSignedIn(User) && User.IsInRole("Tech Lead"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="home" asp-action="secondinterviewslist">Second Interview List</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (signInManager.IsSignedIn(User) && User.IsInRole("Office Manager"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="home" asp-action="UserDocumentsList">Documents List</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (signInManager.IsSignedIn(User) && User.IsInRole("Trainee"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="home" asp-action="FollowRequest">Follow Request</a>
+                                        <a class="dropdown-item" asp-controller="home" asp-action="CorrectDocuments">Correct Documents</a>
+                                    </div>
+                                </li>
+                            }
                         }
                     </ul>
                     <ul class="navbar-nav ms-auto">
