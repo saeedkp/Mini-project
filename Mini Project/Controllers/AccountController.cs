@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;

@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment hostingEnvironment;
@@ -44,18 +43,21 @@ namespace Mini_Project.Controllers
             this.mailService = mailService;
         }
 
+        [AllowAnonymous]
         public ViewResult index()
         {
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ViewResult CreateRequest()
         {
             return View();
         }
-
+     
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateRequest(AddRequestViewModel model)
         {
             if (ModelState.IsValid)
@@ -153,7 +155,9 @@ namespace Mini_Project.Controllers
             }
 
         }
+
         [HttpGet]
+        [Authorize(Roles ="Admin, HRM")]
         public IActionResult RequestsList()
         {
             RequestsListViewModel requestsListViewModel = new RequestsListViewModel
@@ -163,7 +167,9 @@ namespace Mini_Project.Controllers
             };
             return View(requestsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult RequestsList(RequestsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -197,7 +203,9 @@ namespace Mini_Project.Controllers
             //Send the File to Download.
             return File(bytes, "application/pdf", "resume.pdf");
         }
+
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult Interview(int id, string type)
         {
 
@@ -213,7 +221,9 @@ namespace Mini_Project.Controllers
             };
             return View(newInterview);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult Interview(Interview model)
         {
             if (ModelState.IsValid)
@@ -251,6 +261,7 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult InterviewsList()
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
@@ -288,7 +299,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult InterviewsList(InterviewsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -311,9 +324,8 @@ namespace Mini_Project.Controllers
             return View();
         }
 
-
-
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterviewsList()
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
@@ -351,7 +363,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterviewsList(InterviewsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -393,9 +407,8 @@ namespace Mini_Project.Controllers
             return View();
         }
 
-
-
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public async Task<IActionResult> SecondInterview(int id, string type)
         {
             // Dictionary<string, string> Employees = new Dictionary<string, string>();
@@ -431,7 +444,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterview(InterviewViewModel model)
         {
             if (ModelState.IsValid)
@@ -489,12 +504,14 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult FollowRequest()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult FollowRequest(FollowUpRequestViewModel model)
         {
             if (ModelState.IsValid)
@@ -516,6 +533,7 @@ namespace Mini_Project.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public IActionResult ShowStatus(int id)
         {
             Request request = _requestRepository.GetRequestById(id);
@@ -565,6 +583,7 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
         public IActionResult UserDocumentsList()
         {
             AcceptedRequestListViewModel acceptedRequestsListViewModel = new AcceptedRequestListViewModel
@@ -576,6 +595,7 @@ namespace Mini_Project.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
         public IActionResult UserDocumentsList(AcceptedRequestListViewModel model)
         {
             if (ModelState.IsValid)
@@ -599,6 +619,7 @@ namespace Mini_Project.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
         public async Task<IActionResult> FullSignIn(int id)
         {
             if (ModelState.IsValid)
@@ -628,12 +649,14 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Trainee")]
         public IActionResult CorrectDocuments()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Trainee")]
         public async Task<IActionResult> CorrectDocuments(CorrectDocumentsViewModel model)
         {
             if (ModelState.IsValid)
@@ -658,6 +681,7 @@ namespace Mini_Project.Controllers
         }
 
 
+        [AllowAnonymous]
         public FileResult DownloadDocs(string fileName)
         {
             //Build the File Path.

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -478,11 +478,13 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AccessDenied()
         {
             return View();
         }
 
+        [AllowAnonymous]
         private async Task<IActionResult> SendMail([FromForm] MailRequest request)
         {
             try

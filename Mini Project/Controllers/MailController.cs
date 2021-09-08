@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Mini_Project.Models;
 using Mini_Project.Services;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
+    [AllowAnonymous]
     public class MailController : Controller
     {
         private readonly IMailService mailService;
