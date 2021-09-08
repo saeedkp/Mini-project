@@ -75,7 +75,7 @@ namespace Mini_Project
             app.UseAuthentication();
 
             app.UseMvc(routes => {
-                routes.MapRoute("default", "{controller=Home}/{action=CreateRequest}");
+                routes.MapRoute("default", "{controller=Home}/{action=index}");
             });
 
             //SeedData.Seed(app.ApplicationServices);

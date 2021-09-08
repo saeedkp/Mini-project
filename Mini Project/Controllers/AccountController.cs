@@ -42,7 +42,7 @@ namespace Mini_Project.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("createrequest", "home");
+            return RedirectToAction("index", "home");
         }
 
         [HttpGet]
@@ -69,15 +69,8 @@ namespace Mini_Project.Controllers
                         
                     }
                     else
-                    {  
-                        if(roles.Contains("HRM") || roles.Contains("Tech Lead")){
-                            return RedirectToAction("requestslist", "home");
-                        }
-                        else
-                        {
-                            return RedirectToAction("CreateRequest", "home"); 
-                        }
-                          
+                    {
+                        return RedirectToAction("index", "home");
                     }
 
                 }
@@ -125,7 +118,7 @@ namespace Mini_Project.Controllers
                     request.state = State.WaitingForDocumentAcception;
                     _requestRepository.Update(request);
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("createrequest", "home");
+                    return RedirectToAction("index", "home");
                 }
 
                 foreach (var error in result.Errors)

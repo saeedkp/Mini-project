@@ -674,7 +674,7 @@ namespace Mini_Project.Controllers
                 _requestRepository.Update(request);
                 var result = userManager.UpdateAsync(user);
 ;
-                return RedirectToAction("createrequest", "home");
+                return RedirectToAction("index", "home");
             }
 
             return View(model);
