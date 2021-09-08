@@ -577,8 +577,19 @@ namespace Mini_Project.Controllers
             }
             else if (request.state != State.ObtainDocumentsAndOfficialProcess)
             {
-                return Json($"Your Request is in the state: " +
-                    $" {request.state}. So you can't register " +
+                Dictionary<State, string> states = new Dictionary<State, string>();
+
+                states.Add(State.FirstCheck, "Initial Review");
+                states.Add(State.RejectByHRM, "Rejected After Initial Review");
+                states.Add(State.InterviewWithHRM, "You Should Do Your First Interview");
+                states.Add(State.EndInterviewWithHRM, "Your First Interview Finished, Wait For The Result");
+                states.Add(State.RejectAfterInterviewWithHRM, "You Were Rejected After Your First Interview");
+                states.Add(State.TechInterview, "You Should Do Your Technical Interview");
+                states.Add(State.EndTechInterview, "Your Technical Interview Finished, Wait For The Result");
+                states.Add(State.RejectAfterTechInterview, "You Were Rejected After Your Technical Interview");
+
+                return Json($"Your Request is in the state: " + "<br />" +
+                    $" {states[request.state]}." + "<br />" + " So you can't register " +
                     $"until you get accepted.");
             }
             else
