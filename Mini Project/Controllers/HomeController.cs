@@ -655,7 +655,7 @@ namespace Mini_Project.Controllers
                 {
                     ToEmail = request.Email,
                     Subject = "Completed Sign Up",
-                    Body = "Your sign up completed successfully",
+                    Body = "You are accepted for internship. Now you can register with your email.",
                     Attachments = null
                 };
 
