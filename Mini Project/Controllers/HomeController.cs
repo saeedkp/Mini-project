@@ -466,7 +466,7 @@ namespace Mini_Project.Controllers
                 var result = SendMail(mailRequest);
                 MailRequest employeeMailRequest = new MailRequest
                 {
-                    ToEmail = request.Email,
+                    ToEmail = Email,
                     Subject = "Second Interview",
                     Body = "We set second interview with you for " + request.firstName + " " + request.lastName
                      + ".<br/>" + "Interview Location: " + newInterView.Address + "<br />" +
