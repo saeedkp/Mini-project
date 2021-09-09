@@ -1,4 +1,7 @@
 ﻿@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager;
+@using System.Security.Claims;
+@inject IRequestRepository requestRepository;
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -122,16 +125,35 @@
                             }
                             else if (signInManager.IsSignedIn(User) && User.IsInRole("Trainee"))
                             {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Actions
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-controller="home" asp-action="FollowRequest">Follow Request</a>
-                                        <a class="dropdown-item" asp-controller="home" asp-action="CorrectDocuments">Correct Documents</a>
-                                    </div>
-                                </li>
+                                var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                                var user = await userManager.FindByIdAsync(userId);
+                                var request = requestRepository.GetRequestByEmail(user.Email);
+
+                                if (request.state == State.NeedDocumentsCorrection)
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Actions
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" asp-controller="home" asp-action="FollowRequest">Follow Request</a>
+                                            <a class="dropdown-item" asp-controller="home" asp-action="CorrectDocuments">Correct Documents</a>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Actions
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" asp-controller="home" asp-action="FollowRequest">Follow Request</a>
+                                        </div>
+                                    </li>
+                                }
                             }
                         }
                     </ul>

@@ -484,6 +484,20 @@ namespace Mini_Project.Controllers
                         Email = user.Email;
                     }
                 }
+
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Second Interview",
+                    Body = "We set second interview for you." + ".<br/>" +
+                        "Interview Location: " + newInterView.Address + "<br />" +
+                        "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
+
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+
                 MailRequest employeeMailRequest = new MailRequest
                 {
                     ToEmail = Email,
