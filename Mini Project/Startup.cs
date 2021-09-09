@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mini_Project.Models;
+using Mini_Project.Security;
 using Mini_Project.Services;
 using Mini_Project.Settings;
 
@@ -48,6 +49,7 @@ namespace Mini_Project
 
             services.AddScoped<IRequestRepository, SQLRequestRepository>();
             services.AddScoped<IInterviewRepository,SQLInterviewRepository>();
+            services.AddSingleton<DataProtectionPurposeStrings>();
 
             services.ConfigureApplicationCookie(options =>
             {

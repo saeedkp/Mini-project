@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Mini_Project.Models;
+using Mini_Project.Security;
 using Mini_Project.Services;
 using Mini_Project.ViewModels;
 using System;
@@ -25,6 +27,7 @@ namespace Mini_Project.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IInterviewRepository _interviewRepository;
         private readonly ILogger<HomeController> logger;
+        private readonly IDataProtector protector;
 
         public HomeController(IWebHostEnvironment hostingEnvironment,
                                 IMailService mailService,
@@ -32,7 +35,9 @@ namespace Mini_Project.Controllers
                                 RoleManager<IdentityRole> roleManager,
                                 UserManager<ApplicationUser> userManager,
                                 IInterviewRepository interviewRepository,
-                                ILogger<HomeController> logger)
+                                ILogger<HomeController> logger,
+                                IDataProtectionProvider dataProtectionProvider,
+                                DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             _requestRepository = requestRepository;
             _interviewRepository = interviewRepository;
@@ -41,6 +46,8 @@ namespace Mini_Project.Controllers
             this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
             this.mailService = mailService;
+            protector = dataProtectionProvider
+                .CreateProtector(dataProtectionPurposeStrings.RequestIdRouteValue);
         }
 
         [AllowAnonymous]
@@ -531,7 +538,8 @@ namespace Mini_Project.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("showstatus", "home", new { id = request.Id });
+                    request.EncryptedId = protector.Protect(request.Id.ToString());
+                    return RedirectToAction("showstatus", "home", new { id = request.EncryptedId });
                 }
                 
             }
@@ -540,10 +548,21 @@ namespace Mini_Project.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult ShowStatus(int id)
+        public IActionResult ShowStatus(string id)
         {
-            Request request = _requestRepository.GetRequestById(id);
-            return View(request);
+            string decryptedId = protector.Unprotect(id);
+            int decryptedIntId = Convert.ToInt32(decryptedId);
+
+            Request request = _requestRepository.GetRequestById(decryptedIntId);
+            if (request == null)
+            {
+                ViewBag.ErrorMessage = $"Request cannot be found.";
+                return View("NotFound");
+            }
+            else
+            {
+                return View(request);
+            }
         }
 
         [HttpPost]
