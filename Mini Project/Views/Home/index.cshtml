@@ -1,11 +1,16 @@
 @inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager;
+@using System.Security.Claims;
+@inject IRequestRepository requestRepository;
 
 @{
     ViewBag.Title = "Welcome";
 }
 
 <h3 class="col d-flex justify-content-center"
-    style="margin-top: 20px; color:red">Welcome!!</h3>
+    style="margin-top: 20px; color:red">
+    Welcome!!
+</h3>
 
 <div class="card mb-3" style="margin-top: 100px;">
     @{
@@ -130,6 +135,10 @@
         }
         else if (signInManager.IsSignedIn(User) && User.IsInRole("Trainee"))
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = await userManager.FindByIdAsync(userId);
+            var request = requestRepository.GetRequestByEmail(user.Email);
+
             <div class="card-body">
                 Welcome to the internship site. Use on of the buttons below
                 to see what is going on!.
@@ -140,12 +149,16 @@
                     Follow Up Request
                 </a>
             </div>
-            <div class="col d-flex justify-content-center">
-                <a asp-action="CorrectDocuments" asp-controller="home"
-                   class="btn btn-primary mb-3" style="width:auto">
-                    Correct Documents
-                </a>
-            </div>
+            if (request.state == State.NeedDocumentsCorrection)
+            {
+                <div class="col d-flex justify-content-center">
+                    <a asp-action="CorrectDocuments" asp-controller="home"
+                       class="btn btn-primary mb-3" style="width:auto">
+                        Correct Documents
+                    </a>
+                </div>
+            }
+
         }
     }
 </div>
