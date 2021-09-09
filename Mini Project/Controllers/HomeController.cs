@@ -394,7 +394,7 @@ namespace Mini_Project.Controllers
                     {
                         ToEmail = request.Email,
                         Subject = "Internship Accept",
-                        Body = "Congratulations. You are accepted.",
+                        Body = "Congratulations. You are accepted. Now you can register with your email and upload your documents.",
                         Attachments = null
                     };
                     var result = SendMail(mailRequest);
@@ -484,18 +484,6 @@ namespace Mini_Project.Controllers
                         Email = user.Email;
                     }
                 }
-                MailRequest mailRequest = new MailRequest
-                {
-                    ToEmail = request.Email,
-                    Subject = "Second Interview",
-                    Body = "We set second interview for you." + ".<br/>" +
-                        "Interview Location: " + newInterView.Address + "<br />" +
-                        "Interview Date and Time: " + newInterView.DateTime.ToString() + "<br />",
-
-                    Attachments = null
-                };
-
-                var result = SendMail(mailRequest);
                 MailRequest employeeMailRequest = new MailRequest
                 {
                     ToEmail = Email,
@@ -674,7 +662,7 @@ namespace Mini_Project.Controllers
                 {
                     ToEmail = request.Email,
                     Subject = "Completed Sign Up",
-                    Body = "You are accepted for internship. Now you can register with your email.",
+                    Body = "You are accepted for internship and all of your documents are accepted.",
                     Attachments = null
                 };
 
