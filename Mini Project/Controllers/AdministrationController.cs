@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -58,9 +58,9 @@ namespace Mini_Project.Controllers
                     {
                         ToEmail = model.Email,
                         Subject = "Account Created",
-                        Body = "Your Account is now created " +
-                        "with username : " + model.Email + " And " +
-                        "Password : " + model.Password,
+                        Body = "Your Account is now created." + "<br />" +
+                        "Your username is: " + model.Email + "<br />" +
+                        "Your password is: " + model.Password,
                         Attachments = null
                     };
 
@@ -478,11 +478,13 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AccessDenied()
         {
             return View();
         }
 
+        [AllowAnonymous]
         private async Task<IActionResult> SendMail([FromForm] MailRequest request)
         {
             try

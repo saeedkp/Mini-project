@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using Mini_Project.Models;
+using Mini_Project.Security;
 using Mini_Project.Services;
 using Mini_Project.ViewModels;
 using System;
@@ -15,7 +18,6 @@ using System.Threading.Tasks;
 
 namespace Mini_Project.Controllers
 {
-    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment hostingEnvironment;
@@ -24,34 +26,45 @@ namespace Mini_Project.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IInterviewRepository _interviewRepository;
+        private readonly ILogger<HomeController> logger;
+        private readonly IDataProtector protector;
 
         public HomeController(IWebHostEnvironment hostingEnvironment,
                                 IMailService mailService,
                                 IRequestRepository requestRepository,
                                 RoleManager<IdentityRole> roleManager,
                                 UserManager<ApplicationUser> userManager,
-                                IInterviewRepository interviewRepository)
+                                IInterviewRepository interviewRepository,
+                                ILogger<HomeController> logger,
+                                IDataProtectionProvider dataProtectionProvider,
+                                DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             _requestRepository = requestRepository;
             _interviewRepository = interviewRepository;
+            this.logger = logger;
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
             this.mailService = mailService;
+            protector = dataProtectionProvider
+                .CreateProtector(dataProtectionPurposeStrings.RequestIdRouteValue);
         }
 
+        [AllowAnonymous]
         public ViewResult index()
         {
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ViewResult CreateRequest()
         {
             return View();
         }
-
+     
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateRequest(AddRequestViewModel model)
         {
             if (ModelState.IsValid)
@@ -73,8 +86,10 @@ namespace Mini_Project.Controllers
                 MailRequest mailRequest = new MailRequest
                 {
                     ToEmail = model.Email,
-                    Subject = "Confirmation Email",
-                    Body = "Your Code is : " + UniqueFollowUpCode,
+                    Subject = "Follow Up Email",
+                    Body = "You made a internship request." + "<br />" +
+                    "Your follow up code to see the status of your " +
+                    "request is : " + "<br />" + UniqueFollowUpCode,
                     Attachments = null
                 };
 
@@ -93,8 +108,8 @@ namespace Mini_Project.Controllers
                         {
                             ToEmail = user.Email,
                             Subject = "New Request Available",
-                            Body = "A New Request has been created," +
-                        " Please check it in your panel. Thanks.",
+                            Body = "A New internship request has been created." + "<br />" +
+                            "Please check it in your panel in requests list. Thanks.",
                             Attachments = null
                         };
 
@@ -109,6 +124,7 @@ namespace Mini_Project.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         private string ProcessUploadedFile(AddRequestViewModel model)
         {
             string UniqueFileName = null;
@@ -126,6 +142,7 @@ namespace Mini_Project.Controllers
             return UniqueFileName;
         }
 
+        [AllowAnonymous]
         private string ProcessFollowUpCode(AddRequestViewModel model)
         {
             string UniqueCode = null;
@@ -149,7 +166,9 @@ namespace Mini_Project.Controllers
             }
 
         }
+
         [HttpGet]
+        [Authorize(Roles ="Admin, HRM")]
         public IActionResult RequestsList()
         {
             RequestsListViewModel requestsListViewModel = new RequestsListViewModel
@@ -159,7 +178,9 @@ namespace Mini_Project.Controllers
             };
             return View(requestsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult RequestsList(RequestsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -182,6 +203,8 @@ namespace Mini_Project.Controllers
             }
             return View();
         }
+
+        [AllowAnonymous]
         public FileResult DownloadFile(string fileName)
         {
             //Build the File Path.
@@ -193,7 +216,9 @@ namespace Mini_Project.Controllers
             //Send the File to Download.
             return File(bytes, "application/pdf", "resume.pdf");
         }
+
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult Interview(int id, string type)
         {
 
@@ -209,7 +234,9 @@ namespace Mini_Project.Controllers
             };
             return View(newInterview);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult Interview(Interview model)
         {
             if (ModelState.IsValid)
@@ -247,6 +274,7 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult InterviewsList()
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "first interview" &&
@@ -284,7 +312,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM")]
         public IActionResult InterviewsList(InterviewsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -307,9 +337,8 @@ namespace Mini_Project.Controllers
             return View();
         }
 
-
-
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterviewsList()
         {
             IEnumerable<Interview> Interviews = _interviewRepository.GetAllInterview().Where(interview => interview.Type == "second interview" &&
@@ -347,7 +376,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewsListViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterviewsList(InterviewsListViewModel model)
         {
             if (ModelState.IsValid)
@@ -363,7 +394,7 @@ namespace Mini_Project.Controllers
                     {
                         ToEmail = request.Email,
                         Subject = "Internship Accept",
-                        Body = "you are accepted",
+                        Body = "Congratulations. You are accepted.",
                         Attachments = null
                     };
                     var result = SendMail(mailRequest);
@@ -389,9 +420,8 @@ namespace Mini_Project.Controllers
             return View();
         }
 
-
-
         [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public async Task<IActionResult> SecondInterview(int id, string type)
         {
             // Dictionary<string, string> Employees = new Dictionary<string, string>();
@@ -427,7 +457,9 @@ namespace Mini_Project.Controllers
             };
             return View(interviewViewModel);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Tech Lead")]
         public IActionResult SecondInterview(InterviewViewModel model)
         {
             if (ModelState.IsValid)
@@ -485,33 +517,235 @@ namespace Mini_Project.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult FollowRequest()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult FollowRequest(FollowUpRequestViewModel model)
         {
             if (ModelState.IsValid)
             {
                 Request request = _requestRepository.GetRequestByFollowUpCode(model.code);
 
-                if (Request == null)
+                if (request == null)
                 {
                     ViewBag.ErrorMessage = $"Request with Code = {model.code} cannot be found";
                     return View("NotFound");
                 }
-                return RedirectToAction("showstatus", "home", new { id = request.Id });
+                else
+                {
+                    request.EncryptedId = protector.Protect(request.Id.ToString());
+                    return RedirectToAction("showstatus", "home", new { id = request.EncryptedId });
+                }
+                
             }
 
             return View(model);
         }
 
-        public IActionResult ShowStatus(int id)
+        [AllowAnonymous]
+        public IActionResult ShowStatus(string id)
         {
-            Request request = _requestRepository.GetRequestById(id);
-            return View(request);
+            string decryptedId = protector.Unprotect(id);
+            int decryptedIntId = Convert.ToInt32(decryptedId);
+
+            Request request = _requestRepository.GetRequestById(decryptedIntId);
+            if (request == null)
+            {
+                ViewBag.ErrorMessage = $"Request cannot be found.";
+                return View("NotFound");
+            }
+            else
+            {
+                return View(request);
+            }
+        }
+
+        [HttpPost]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult IsEmailInUse(string email)
+        {
+            var request = _requestRepository.GetRequestByEmail(email);
+
+            if (request == null)
+            {
+                return Json(true);   
+            }
+            else
+            {
+                return Json($"Email {email} is already in use");
+            }
+        }
+
+        [HttpPost]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RequestExistsWithEmailAndIsAccepted(string email)
+        {
+            Request request = _requestRepository.GetRequestByEmail(email);
+
+            if (request == null)
+            {
+                return Json($"There is no request with email : " +
+                    $"{email}. Please make a request first.");
+            }
+            else if (request.state != State.ObtainDocumentsAndOfficialProcess)
+            {
+                Dictionary<State?, string> states = new Dictionary<State?, string>();
+
+                states.Add(State.FirstCheck, "Initial Review");
+                states.Add(State.RejectByHRM, "Rejected After Initial Review");
+                states.Add(State.InterviewWithHRM, "You Should Do Your First Interview");
+                states.Add(State.EndInterviewWithHRM, "Your First Interview Finished, Wait For The Result");
+                states.Add(State.RejectAfterInterviewWithHRM, "You Were Rejected After Your First Interview");
+                states.Add(State.TechInterview, "You Should Do Your Technical Interview");
+                states.Add(State.EndTechInterview, "Your Technical Interview Finished, Wait For The Result");
+                states.Add(State.RejectAfterTechInterview, "You Were Rejected After Your Technical Interview");
+
+                return Json($"Your Request is in the state: " + "<br />" +
+                    $" {states[request.state]}." + "<br />" + " So you can't register " +
+                    $"until you get accepted.");
+            }
+            else
+            {
+                return Json(true);
+            }
+            
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
+        public IActionResult UserDocumentsList()
+        {
+            AcceptedRequestListViewModel acceptedRequestsListViewModel = new AcceptedRequestListViewModel
+            {
+                Requests = _requestRepository.GetAllRequests(),
+                Comment = ""
+            };
+            return View(acceptedRequestsListViewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
+        public IActionResult UserDocumentsList(AcceptedRequestListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(model.Id);
+                request.Comment = model.Comment;
+                request.state = State.NeedDocumentsCorrection;
+
+                request = _requestRepository.Update(request);
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Need Document Correction",
+                    Body = request.Comment,
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("userdocumentslist", "home");
+            }
+            return View();
+        }
+
+        [Authorize(Roles = "Admin, HRM, Office Manager")]
+        public async Task<IActionResult> FullSignIn(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                Request request = _requestRepository.GetRequestById(id);
+                request.state = State.SuccessfulSignUp;
+
+                var user = await userManager.FindByEmailAsync(request.Email);
+                user.documentsPath = request.documentsPath;
+
+
+                request = _requestRepository.Update(request);
+                var resultUpdate = await userManager.UpdateAsync(user);
+
+                MailRequest mailRequest = new MailRequest
+                {
+                    ToEmail = request.Email,
+                    Subject = "Completed Sign Up",
+                    Body = "You are accepted for internship. Now you can register with your email.",
+                    Attachments = null
+                };
+
+                var result = SendMail(mailRequest);
+                return RedirectToAction("userdocumentslist", "home");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Trainee")]
+        public IActionResult CorrectDocuments()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Trainee")]
+        public async Task<IActionResult> CorrectDocuments(CorrectDocumentsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                var user = await userManager.FindByIdAsync(id);
+                var request = _requestRepository.GetRequestByEmail(user.Email);
+
+                string UniqueFileName = ProcessUploadedDoc(model);
+
+                request.documentsPath = UniqueFileName;
+                request.state = State.WaitingForDocumentAcception;
+                user.documentsPath = UniqueFileName;
+
+                _requestRepository.Update(request);
+                var result = userManager.UpdateAsync(user);
+;
+                return RedirectToAction("index", "home");
+            }
+
+            return View(model);
+        }
+
+
+        [AllowAnonymous]
+        public FileResult DownloadDocs(string fileName)
+        {
+            //Build the File Path.
+            string path = Path.Combine(hostingEnvironment.WebRootPath, "documents/") + fileName;
+
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            //Send the File to Download.
+            return File(bytes, "application/pdf", "document.pdf");
+        }
+
+        [AllowAnonymous]
+        private string ProcessUploadedDoc(CorrectDocumentsViewModel model)
+        {
+            string UniqueFileName = null;
+            if (model.Documents != null)
+            {
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "documents");
+                UniqueFileName = Guid.NewGuid().ToString() + "_" + model.Documents.FileName;
+                string filePath = Path.Combine(uploadsFolder, UniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Documents.CopyTo(fileStream);
+                }
+            }
+
+            return UniqueFileName;
         }
     }
 }

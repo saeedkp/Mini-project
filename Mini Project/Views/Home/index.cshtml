@@ -1,7 +1,151 @@
+@inject SignInManager<ApplicationUser> signInManager;
+
 @{
     ViewBag.Title = "Welcome";
 }
 
-<div class="container">
-    <h1>Welcome page</h1>
+<h3 class="col d-flex justify-content-center"
+    style="margin-top: 20px; color:red">Welcome!!</h3>
+
+<div class="card mb-3" style="margin-top: 100px;">
+    @{
+        if (!signInManager.IsSignedIn(User))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to add internship request or follow your existing request.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="createrequest" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    Create New Request
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="followrequest" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    Follow Up Your Request
+                </a>
+            </div>
+        }
+        else if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to see what is going on!.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="listusers" asp-controller="administration"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Users
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="listroles" asp-controller="administration"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Roles
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="requestslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Requests
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="interviewslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of First Interviews
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="secondinterviewslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Second Interviews
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="UserDocumentsList" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Users' Documents
+                </a>
+            </div>
+        }
+        else if (signInManager.IsSignedIn(User) && User.IsInRole("HRM"))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to see what is going on!.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="requestslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Requests
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="interviewslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of First Interviews
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="secondinterviewslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Second Interviews
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="UserDocumentsList" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Users' Documents
+                </a>
+            </div>
+        }
+        else if (signInManager.IsSignedIn(User) && User.IsInRole("Tech Lead"))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to see what is going on!.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="secondinterviewslist" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Second Interviews
+                </a>
+            </div>
+        }
+        else if (signInManager.IsSignedIn(User) && User.IsInRole("Office Manager"))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to see what is going on!.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="UserDocumentsList" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    List Of Users' Documents
+                </a>
+            </div>
+        }
+        else if (signInManager.IsSignedIn(User) && User.IsInRole("Trainee"))
+        {
+            <div class="card-body">
+                Welcome to the internship site. Use on of the buttons below
+                to see what is going on!.
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="FollowRequest" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    Follow Up Request
+                </a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a asp-action="CorrectDocuments" asp-controller="home"
+                   class="btn btn-primary mb-3" style="width:auto">
+                    Correct Documents
+                </a>
+            </div>
+        }
+    }
 </div>
